@@ -326,13 +326,13 @@
             <tr>
                 <td><strong>Card</strong></td>
                 <td>-</td>
-                <td><input type="text" inputmode="numeric" pattern="[0-9]*" id="card" tabindex="4" value="0" onfocus="handleFocus(this)" onblur="handleBlur(this)" oninput="calculateAll()"></td>
+                <td><input type="tel" inputmode="numeric" id="card" tabindex="4" value="0" onfocus="handleFocus(this)" onblur="handleBlur(this)" oninput="calculateAll()"></td>
                 <td><input type="text" class="cell-input exp-name" value="Snacks" tabindex="20"></td>
-                <td><input type="text" inputmode="numeric" pattern="[0-9]*" class="cell-input exp-amt" value="0" tabindex="21" onfocus="handleFocus(this)" onblur="handleBlur(this)" oninput="calculateAll()"></td>
+                <td><input type="tel" inputmode="numeric" class="cell-input exp-amt" value="0" tabindex="21" onfocus="handleFocus(this)" onblur="handleBlur(this)" oninput="calculateAll()"></td>
                 <td><input type="text" class="cell-input vendor-name" value="" tabindex="30"></td>
-                <td><input type="text" inputmode="numeric" pattern="[0-9]*" class="cell-input vendor-amt" value="0" tabindex="31" onfocus="handleFocus(this)" onblur="handleBlur(this)" oninput="calculateAll()"></td>
+                <td><input type="tel" inputmode="numeric" class="cell-input vendor-amt" value="0" tabindex="31" onfocus="handleFocus(this)" onblur="handleBlur(this)" oninput="calculateAll()"></td>
                 <td><input type="text" class="cell-input unbill-name" value="" tabindex="40"></td>
-                <td><input type="text" inputmode="numeric" pattern="[0-9]*" class="cell-input unbill-amt" value="0" tabindex="41" onfocus="handleFocus(this)" onblur="handleBlur(this)" oninput="calculateAll()"></td>
+                <td><input type="tel" inputmode="numeric" class="cell-input unbill-amt" value="0" tabindex="41" onfocus="handleFocus(this)" onblur="handleBlur(this)" oninput="calculateAll()"></td>
                 <td class="bg-yellow text-left">Grand total</td>
                 <td class="bg-yellow" id="lblGrandTotal">0</td>
             </tr>
@@ -345,7 +345,7 @@
             <tr>
                 <td><strong>UPI</strong></td>
                 <td>-</td>
-                <td><input type="text" inputmode="numeric" pattern="[0-9]*" id="upi" tabindex="5" value="0" onfocus="handleFocus(this)" onblur="handleBlur(this)" oninput="calculateAll()"></td>
+                <td><input type="tel" inputmode="numeric" id="upi" tabindex="5" value="0" onfocus="handleFocus(this)" onblur="handleBlur(this)" oninput="calculateAll()"></td>
                 <td colspan="2" style="border-right:1px solid #000;"></td>
                 <td colspan="2" style="border-right:1px solid #000;"></td>
                 <td colspan="2"></td>
@@ -355,7 +355,7 @@
             <tr>
                 <td><strong>Pluxee (sodexo)</strong></td>
                 <td>-</td>
-                <td><input type="text" inputmode="numeric" pattern="[0-9]*" id="sodexo" tabindex="6" value="0" onfocus="handleFocus(this)" onblur="handleBlur(this)" oninput="calculateAll()"></td>
+                <td><input type="tel" inputmode="numeric" id="sodexo" tabindex="6" value="0" onfocus="handleFocus(this)" onblur="handleBlur(this)" oninput="calculateAll()"></td>
                 <td colspan="2" style="border-right:1px solid #000;"></td>
                 <td colspan="2" style="border-right:1px solid #000;"></td>
                 <td colspan="2"></td>
@@ -364,7 +364,7 @@
             </tr>
             <tr>
                 <td><strong>500</strong></td>
-                <td><input type="text" inputmode="numeric" pattern="[0-9]*" class="denom-count" tabindex="7" data-val="500" value="0" onfocus="handleFocus(this)" onblur="handleBlur(this)" oninput="calculateAll()"></td>
+                <td><input type="tel" inputmode="numeric" class="denom-count" tabindex="7" data-val="500" value="0" onfocus="handleFocus(this)" onblur="handleBlur(this)" oninput="calculateAll()"></td>
                 <td id="amt-500">0</td>
                 <td colspan="6" style="border:none;"></td>
                 <td class="bg-gray text-left">Total</td>
@@ -372,22 +372,22 @@
             </tr>
             <tr>
                 <td><strong>200</strong></td>
-                <td><input type="text" inputmode="numeric" pattern="[0-9]*" class="denom-count" tabindex="8" data-val="200" value="0" onfocus="handleFocus(this)" onblur="handleBlur(this)" oninput="calculateAll()"></td>
+                <td><input type="tel" inputmode="numeric" class="denom-count" tabindex="8" data-val="200" value="0" onfocus="handleFocus(this)" onblur="handleBlur(this)" oninput="calculateAll()"></td>
                 <td id="amt-200">0</td>
                 <td colspan="6" style="border:none;"></td>
                 <td colspan="2" style="border:none;"></td>
             </tr>
             <tr>
                 <td><strong>100</strong></td>
-                <td><input type="text" inputmode="numeric" pattern="[0-9]*" class="denom-count" tabindex="9" data-val="100" value="0" onfocus="handleFocus(this)" onblur="handleBlur(this)" oninput="calculateAll()"></td>
+                <td><input type="tel" inputmode="numeric" class="denom-count" tabindex="9" data-val="100" value="0" onfocus="handleFocus(this)" onblur="handleBlur(this)" oninput="calculateAll()"></td>
                 <td id="amt-100">0</td>
                 <td colspan="6" style="border:none;"></td>
                 <td class="text-left" style="font-weight:600;">Software sale</td>
-                <td><input type="text" inputmode="numeric" pattern="[0-9]*" id="softwareSale" tabindex="50" value="0" onfocus="handleFocus(this)" onblur="handleBlur(this)" oninput="calculateAll()" style="width:100%; border:none; background:transparent; text-align:center; font-size:13px; font-family:'Inter'; outline:none;"></td>
+                <td><input type="tel" inputmode="numeric" id="softwareSale" tabindex="50" value="0" onfocus="handleFocus(this)" onblur="handleBlur(this)" oninput="calculateAll()" style="width:100%; border:none; background:transparent; text-align:center; font-size:13px; font-family:'Inter'; outline:none;"></td>
             </tr>
             <tr>
                 <td><strong>50</strong></td>
-                <td><input type="text" inputmode="numeric" pattern="[0-9]*" class="denom-count" tabindex="10" data-val="50" value="0" onfocus="handleFocus(this)" onblur="handleBlur(this)" oninput="calculateAll()"></td>
+                <td><input type="tel" inputmode="numeric" class="denom-count" tabindex="10" data-val="50" value="0" onfocus="handleFocus(this)" onblur="handleBlur(this)" oninput="calculateAll()"></td>
                 <td id="amt-50">0</td>
                 <td colspan="6" style="border:none;"></td>
                 <td class="bg-blue text-left">Unbill Total</td>
@@ -395,7 +395,7 @@
             </tr>
             <tr>
                 <td><strong>20</strong></td>
-                <td><input type="text" inputmode="numeric" pattern="[0-9]*" class="denom-count" tabindex="11" data-val="20" value="0" onfocus="handleFocus(this)" onblur="handleBlur(this)" oninput="calculateAll()"></td>
+                <td><input type="tel" inputmode="numeric" class="denom-count" tabindex="11" data-val="20" value="0" onfocus="handleFocus(this)" onblur="handleBlur(this)" oninput="calculateAll()"></td>
                 <td id="amt-20">0</td>
                 <td colspan="6" style="border:none;"></td>
                 <td class="bg-yellow text-left">Total Sale</td>
@@ -403,7 +403,7 @@
             </tr>
             <tr>
                 <td><strong>10</strong></td>
-                <td><input type="text" inputmode="numeric" pattern="[0-9]*" class="denom-count" tabindex="12" data-val="10" value="0" onfocus="handleFocus(this)" onblur="handleBlur(this)" oninput="calculateAll()"></td>
+                <td><input type="tel" inputmode="numeric" class="denom-count" tabindex="12" data-val="10" value="0" onfocus="handleFocus(this)" onblur="handleBlur(this)" oninput="calculateAll()"></td>
                 <td id="amt-10">0</td>
                 <td colspan="6" style="border:none;"></td>
                 <td class="bg-gray text-left">Tally/Untally</td>
@@ -411,7 +411,7 @@
             </tr>
             <tr>
                 <td><strong>5's</strong></td>
-                <td><input type="text" inputmode="numeric" pattern="[0-9]*" class="denom-count" tabindex="13" data-val="5" value="0" onfocus="handleFocus(this)" onblur="handleBlur(this)" oninput="calculateAll()"></td>
+                <td><input type="tel" inputmode="numeric" class="denom-count" tabindex="13" data-val="5" value="0" onfocus="handleFocus(this)" onblur="handleBlur(this)" oninput="calculateAll()"></td>
                 <td id="amt-5">0</td>
                 <td colspan="6" style="border:none;"></td>
                 <td colspan="2" rowspan="5" style="vertical-align: top; text-align: left; padding: 8px;">
@@ -421,13 +421,13 @@
             </tr>
             <tr>
                 <td><strong>2's</strong></td>
-                <td><input type="text" inputmode="numeric" pattern="[0-9]*" class="denom-count" tabindex="14" data-val="2" value="0" onfocus="handleFocus(this)" onblur="handleBlur(this)" oninput="calculateAll()"></td>
+                <td><input type="tel" inputmode="numeric" class="denom-count" tabindex="14" data-val="2" value="0" onfocus="handleFocus(this)" onblur="handleBlur(this)" oninput="calculateAll()"></td>
                 <td id="amt-2">0</td>
                 <td colspan="6" style="border:none;"></td>
             </tr>
             <tr>
                 <td><strong>1's</strong></td>
-                <td><input type="text" inputmode="numeric" pattern="[0-9]*" class="denom-count" tabindex="15" data-val="1" value="0" onfocus="handleFocus(this)" onblur="handleBlur(this)" oninput="calculateAll()"></td>
+                <td><input type="tel" inputmode="numeric" class="denom-count" tabindex="15" data-val="1" value="0" onfocus="handleFocus(this)" onblur="handleBlur(this)" oninput="calculateAll()"></td>
                 <td id="amt-1">0</td>
                 <td colspan="6" style="border:none;"></td>
             </tr>
@@ -446,15 +446,15 @@
                 <td colspan="9" style="padding: 0; border: none;">
                     <table style="width:100%; border-collapse:collapse; text-align:center; font-size:12px;">
                         <tr style="background:#f8fafc;">
-                            <td style="border:1px solid #000; width:11%;">500: <input type="text" inputmode="numeric" pattern="[0-9]*" class="added-count" data-val="500" value="0" onfocus="handleFocus(this)" onblur="handleBlur(this)" oninput="calculateAll()"></td>
-                            <td style="border:1px solid #000; width:11%;">200: <input type="text" inputmode="numeric" pattern="[0-9]*" class="added-count" data-val="200" value="0" onfocus="handleFocus(this)" onblur="handleBlur(this)" oninput="calculateAll()"></td>
-                            <td style="border:1px solid #000; width:11%;">100: <input type="text" inputmode="numeric" pattern="[0-9]*" class="added-count" data-val="100" value="0" onfocus="handleFocus(this)" onblur="handleBlur(this)" oninput="calculateAll()"></td>
-                            <td style="border:1px solid #000; width:11%;">50: <input type="text" inputmode="numeric" pattern="[0-9]*" class="added-count" data-val="50" value="0" onfocus="handleFocus(this)" onblur="handleBlur(this)" oninput="calculateAll()"></td>
-                            <td style="border:1px solid #000; width:11%;">20: <input type="text" inputmode="numeric" pattern="[0-9]*" class="added-count" data-val="20" value="0" onfocus="handleFocus(this)" onblur="handleBlur(this)" oninput="calculateAll()"></td>
-                            <td style="border:1px solid #000; width:11%;">10: <input type="text" inputmode="numeric" pattern="[0-9]*" class="added-count" data-val="10" value="0" onfocus="handleFocus(this)" onblur="handleBlur(this)" oninput="calculateAll()"></td>
-                            <td style="border:1px solid #000; width:11%;">5: <input type="text" inputmode="numeric" pattern="[0-9]*" class="added-count" data-val="5" value="0" onfocus="handleFocus(this)" onblur="handleBlur(this)" oninput="calculateAll()"></td>
-                            <td style="border:1px solid #000; width:8%;">2: <input type="text" inputmode="numeric" pattern="[0-9]*" class="added-count" data-val="2" value="0" onfocus="handleFocus(this)" onblur="handleBlur(this)" oninput="calculateAll()"></td>
-                            <td style="border:1px solid #000; width:8%;">1: <input type="text" inputmode="numeric" pattern="[0-9]*" class="added-count" data-val="1" value="0" onfocus="handleFocus(this)" onblur="handleBlur(this)" oninput="calculateAll()"></td>
+                            <td style="border:1px solid #000; width:11%;">500: <input type="tel" inputmode="numeric" class="added-count" data-val="500" value="0" onfocus="handleFocus(this)" onblur="handleBlur(this)" oninput="calculateAll()"></td>
+                            <td style="border:1px solid #000; width:11%;">200: <input type="tel" inputmode="numeric" class="added-count" data-val="200" value="0" onfocus="handleFocus(this)" onblur="handleBlur(this)" oninput="calculateAll()"></td>
+                            <td style="border:1px solid #000; width:11%;">100: <input type="tel" inputmode="numeric" class="added-count" data-val="100" value="0" onfocus="handleFocus(this)" onblur="handleBlur(this)" oninput="calculateAll()"></td>
+                            <td style="border:1px solid #000; width:11%;">50: <input type="tel" inputmode="numeric" class="added-count" data-val="50" value="0" onfocus="handleFocus(this)" onblur="handleBlur(this)" oninput="calculateAll()"></td>
+                            <td style="border:1px solid #000; width:11%;">20: <input type="tel" inputmode="numeric" class="added-count" data-val="20" value="0" onfocus="handleFocus(this)" onblur="handleBlur(this)" oninput="calculateAll()"></td>
+                            <td style="border:1px solid #000; width:11%;">10: <input type="tel" inputmode="numeric" class="added-count" data-val="10" value="0" onfocus="handleFocus(this)" onblur="handleBlur(this)" oninput="calculateAll()"></td>
+                            <td style="border:1px solid #000; width:11%;">5: <input type="tel" inputmode="numeric" class="added-count" data-val="5" value="0" onfocus="handleFocus(this)" onblur="handleBlur(this)" oninput="calculateAll()"></td>
+                            <td style="border:1px solid #000; width:8%;">2: <input type="tel" inputmode="numeric" class="added-count" data-val="2" value="0" onfocus="handleFocus(this)" onblur="handleBlur(this)" oninput="calculateAll()"></td>
+                            <td style="border:1px solid #000; width:8%;">1: <input type="tel" inputmode="numeric" class="added-count" data-val="1" value="0" onfocus="handleFocus(this)" onblur="handleBlur(this)" oninput="calculateAll()"></td>
                         </tr>
                     </table>
                 </td>
@@ -479,7 +479,7 @@
             <tr>
                 <td class="text-left"><strong>Today Opening balance (–)</strong></td>
                 <td>-</td>
-                <td><input type="text" inputmode="numeric" pattern="[0-9]*" id="openingBalance" tabindex="16" value="0" onfocus="handleFocus(this)" onblur="handleBlur(this)" oninput="calculateAll()"></td>
+                <td><input type="tel" inputmode="numeric" id="openingBalance" tabindex="16" value="0" onfocus="handleFocus(this)" onblur="handleBlur(this)" oninput="calculateAll()"></td>
                 <td class="bg-gray text-left" style="font-weight:700;">Closing balance:</td>
                 <td class="bg-gray" id="displayClosingBalance" style="font-weight:700;">0</td>
                 <td colspan="4"></td>
@@ -537,7 +537,7 @@
         tr.innerHTML = `
             <td></td><td></td><td></td>
             <td><input type="text" class="cell-input exp-name" placeholder="Item"></td>
-            <td><input type="text" inputmode="numeric" pattern="[0-9]*" class="cell-input exp-amt" value="0" onfocus="handleFocus(this)" onblur="handleBlur(this)" oninput="calculateAll()"> <button type="button" class="remove-btn" onclick="this.closest('tr').remove(); calculateAll();">✕</button></td>
+            <td><input type="tel" inputmode="numeric" class="cell-input exp-amt" value="0" onfocus="handleFocus(this)" onblur="handleBlur(this)" oninput="calculateAll()"> <button type="button" class="remove-btn" onclick="this.closest('tr').remove(); calculateAll();">✕</button></td>
             <td colspan="2" style="border-right:1px solid #000;"></td>
             <td colspan="2"></td>
             <td colspan="2" style="border:none;"></td>
@@ -554,7 +554,7 @@
             <td></td><td></td><td></td>
             <td colspan="2" style="border-right:1px solid #000;"></td>
             <td><input type="text" class="cell-input vendor-name" placeholder="Name"></td>
-            <td><input type="text" inputmode="numeric" pattern="[0-9]*" class="cell-input vendor-amt" value="0" onfocus="handleFocus(this)" onblur="handleBlur(this)" oninput="calculateAll()"> <button type="button" class="remove-btn" onclick="this.closest('tr').remove(); calculateAll();">✕</button></td>
+            <td><input type="tel" inputmode="numeric" class="cell-input vendor-amt" value="0" onfocus="handleFocus(this)" onblur="handleBlur(this)" oninput="calculateAll()"> <button type="button" class="remove-btn" onclick="this.closest('tr').remove(); calculateAll();">✕</button></td>
             <td colspan="2"></td>
             <td colspan="2" style="border:none;"></td>
         `;
@@ -571,7 +571,7 @@
             <td colspan="2" style="border-right:1px solid #000;"></td>
             <td colspan="2" style="border-right:1px solid #000;"></td>
             <td><input type="text" class="cell-input unbill-name" placeholder="Item"></td>
-            <td><input type="text" inputmode="numeric" pattern="[0-9]*" class="cell-input unbill-amt" value="0" onfocus="handleFocus(this)" onblur="handleBlur(this)" oninput="calculateAll()"> <button type="button" class="remove-btn" onclick="this.closest('tr').remove(); calculateAll();">✕</button></td>
+            <td><input type="tel" inputmode="numeric" class="cell-input unbill-amt" value="0" onfocus="handleFocus(this)" onblur="handleBlur(this)" oninput="calculateAll()"> <button type="button" class="remove-btn" onclick="this.closest('tr').remove(); calculateAll();">✕</button></td>
             <td colspan="2" style="border:none;"></td>
         `;
         anchor.parentNode.insertBefore(tr, anchor);
