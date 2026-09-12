@@ -787,6 +787,12 @@
 
             alert("Report successfully saved to Google Sheets and JPEG downloaded!");
             
+            // Trigger WhatsApp with both image instructions/prompt and text summary
+            let totalSaleVal = document.getElementById('lblTotalSale').innerText;
+            let tallyVal = document.getElementById('lblTally').innerText;
+            let waText = encodeURIComponent(`*Lalitha Naturals - Daily Cash Report*\n*Branch:* ${branch}\n*Staff:* ${staffNameImageText = staffNameInput}\n*Date & Time:* ${rawDateVal}\n*Total Sale:* ₹${totalSaleVal}\n*Tally Status:* ₹${tallyVal}\n*Closing Balance:* ₹${globalClosingBalance}\n\n_(Note: Please attach the downloaded report image to this message)_`);
+            window.open(`https://api.whatsapp.com/send?text=${waText}`, '_blank');
+
             setTimeout(() => {
                 localStorage.clear();
                 location.reload();
