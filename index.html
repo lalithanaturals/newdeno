@@ -595,7 +595,6 @@
         let branch = document.getElementById('branchName').value;
         localStorage.setItem('closing_balance_' + branch, globalClosingBalance);
         
-        // Example of how data is prepared to send to your Google Sheet Web App endpoint
         let formData = {
             date: document.getElementById('reportDate').value,
             branchName: branch,
@@ -610,15 +609,20 @@
             remarks: document.getElementById('remarks').value
         };
 
-        alert("Report verified and saved successfully! Closing Balance (₹" + globalClosingBalance + ") carried forward as next Opening Balance.");
-        
-        // Uncomment when you add your Google Apps Script URL:
-        
+        // Send data to Google Sheets via your deployed Web App URL
         fetch('https://script.google.com/macros/s/AKfycbxRC-XR0-jvED9cqJQwEern-Dg0m-qm0U5kzRveQotGCscxaKbLKMnRTBHJSKKE9Qh9/exec', {
             method: 'POST',
+            mode: 'no-cors',
+            headers: {
+                'Content-Type': 'text/plain;charset=utf-8',
+            },
             body: JSON.stringify(formData)
-        }).then(res => res.json()).then(data => console.log(data));
-        
+        }).then(() => {
+            alert("Report verified and saved successfully! Closing Balance (₹" + globalClosingBalance + ") carried forward as next Opening Balance.");
+        }).catch(error => {
+            console.error('Error:', error);
+            alert("Saved locally, but check network connection for Google Sheets sync.");
+        });
     }
 </script>
 
