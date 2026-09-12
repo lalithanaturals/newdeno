@@ -273,6 +273,92 @@
         .btn-edit { background: #d97706; color: white; border: none; padding: 5px 10px; border-radius: 4px; font-weight: 600; cursor: pointer; flex: 1; font-size: 11px; }
         .btn-close { background: #64748b; color: white; border: none; padding: 5px 10px; border-radius: 4px; font-weight: 600; cursor: pointer; flex: 1; font-size: 11px; }
     </style>
+    /* Make container fluid and remove large fixed desktop width */
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f1f5f9;
+    color: #000000;
+    margin: 0;
+    padding: 8px; /* Reduced outer padding */
+}
+
+.app-container {
+    width: 100%;
+    max-width: 100%;
+    margin: auto;
+    background: #ffffff;
+    padding: 10px; /* Reduced inner padding */
+    border: 2px solid #000;
+    box-sizing: border-box;
+}
+
+/* Tighten table cells to eliminate dead space */
+.register-table th, .register-table td {
+    border: 1px solid #000;
+    padding: 4px 4px; /* Tighter vertical and horizontal padding */
+    vertical-align: middle;
+    font-size: 11px;  /* Slightly smaller font to fit mobile screens */
+}
+
+/* Ensure inputs take up available space without inner margins */
+input[type="number"], input[type="text"].cell-input, select {
+    width: 100%;
+    border: none;
+    background: transparent;
+    text-align: center;
+    font-size: 11px;
+    outline: none;
+    font-family: 'Inter', sans-serif;
+    padding: 2px 0;
+}
+
+/* Compact header elements */
+.logo-box {
+    width: 110px;
+    padding: 6px;
+    border-right: 2px solid #000;
+    background: #fff;
+}
+
+.logo-box h2 {
+    font-size: 18px;
+    margin: 0;
+}
+
+.logo-box span {
+    font-size: 10px;
+    letter-spacing: 1px;
+}
+
+.register-title {
+    font-size: 13px;
+    padding: 6px;
+}
+
+.branch-select-row select {
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.meta-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+    font-size: 11px;
+}
+
+.meta-row input[type="date"], .meta-row input[type="text"] {
+    width: 110px;
+    padding: 4px;
+    font-size: 11px;
+}
+
+/* Make the Cash Added Breakdown table tight */
+.register-table table table td {
+    padding: 2px !important;
+    font-size: 10px;
+}
 </head>
 <body>
 
@@ -305,27 +391,27 @@
     <!-- Master Grid Table (Landscape Optimized & Compact) -->
     <table class="register-table">
         <thead>
-            <tr>
-                <th class="th-green" style="width: 14%;">Denomination</th>
-                <th class="th-green" colspan="2" style="width: 14%;">Tray Balance</th>
-                <th class="th-green" colspan="2" style="width: 22%;">Expenses <button type="button" class="add-row-btn" onclick="addExpenseRow()">+ Add</button></th>
-                <th class="th-green" colspan="2" style="width: 22%;">Vendor payments <button type="button" class="add-row-btn" onclick="addVendorRow()">+ Add</button></th>
-                <th class="th-green" colspan="2" style="width: 14%;">Unbilled <button type="button" class="add-row-btn" onclick="addUnbillRow()">+ Add</button></th>
-                <th class="th-green" colspan="2" style="width: 14%;">Total List</th>
-            </tr>
-            <tr>
-                <th class="th-green"></th>
-                <th class="th-green" style="width: 6%;">No.s</th>
-                <th class="th-green" style="width: 8%;">Rs.</th>
-                <th class="th-green" style="width: 14%;">For</th>
-                <th class="th-green" style="width: 8%;">Amount</th>
-                <th class="th-green" style="width: 14%;">Name</th>
-                <th class="th-green" style="width: 8%;">Amount</th>
-                <th class="th-green" style="width: 9%;">Item</th>
-                <th class="th-green" style="width: 5%;">Amount</th>
-                <th class="th-green text-left" colspan="2"></th>
-            </tr>
-        </thead>
+    <tr>
+        <th class="th-green">Denomination</th>
+        <th class="th-green" colspan="2">Tray Balance</th>
+        <th class="th-green" colspan="2">Expenses <button type="button" class="add-row-btn" onclick="addExpenseRow()">+Add</button></th>
+        <th class="th-green" colspan="2">Vendor <button type="button" class="add-row-btn" onclick="addVendorRow()">+Add</button></th>
+        <th class="th-green" colspan="2">Unbilled <button type="button" class="add-row-btn" onclick="addUnbillRow()">+Add</button></th>
+        <th class="th-green" colspan="2">Total List</th>
+    </tr>
+    <tr>
+        <th class="th-green"></th>
+        <th class="th-green">No.s</th>
+        <th class="th-green">Rs.</th>
+        <th class="th-green">For</th>
+        <th class="th-green">Amt</th>
+        <th class="th-green">Name</th>
+        <th class="th-green">Amt</th>
+        <th class="th-green">Item</th>
+        <th class="th-green">Amt</th>
+        <th class="th-green text-left" colspan="2"></th>
+    </tr>
+</thead>
         <tbody id="gridBody">
             <tr>
                 <td><strong>Card</strong></td>
