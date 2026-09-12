@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cash Denomination Register</title>
+    <title>Cash Denomination Register - Lalitha Naturals</title>
     <style>
         body {
             font-family: 'Inter', sans-serif;
@@ -45,11 +45,13 @@
         .logo-box h2 {
             font-size: 18px;
             margin: 0;
+            color: #065f46;
         }
 
         .logo-box span {
             font-size: 10px;
             letter-spacing: 1px;
+            font-weight: bold;
         }
 
         .register-title {
@@ -66,6 +68,7 @@
             border: none;
             background: transparent;
             outline: none;
+            text-align: center;
         }
 
         .meta-row {
@@ -85,7 +88,7 @@
 
         .register-table th, .register-table td {
             border: 1px solid #000;
-            padding: 4px;
+            padding: 4px 2px;
             vertical-align: middle;
             font-size: 11px;
             text-align: center;
@@ -95,6 +98,24 @@
         .th-green {
             background-color: #d1fae5;
             color: #065f46;
+            font-weight: bold;
+        }
+
+        .th-pink {
+            background-color: #fce7f3;
+            color: #9d174d;
+            font-weight: bold;
+        }
+
+        .th-blue {
+            background-color: #dbeafe;
+            color: #1e40af;
+            font-weight: bold;
+        }
+
+        .th-yellow {
+            background-color: #fef3c7;
+            color: #92400e;
             font-weight: bold;
         }
 
@@ -118,7 +139,7 @@
             background: #10b981;
             color: white;
             border: none;
-            padding: 2px 4px;
+            padding: 1px 3px;
             font-size: 9px;
             cursor: pointer;
             border-radius: 3px;
@@ -139,22 +160,21 @@
             border-radius: 2px;
         }
 
-        .summary-box {
+        .sub-table {
+            width: 100%;
+            border-collapse: collapse;
             margin-top: 10px;
-            border: 1px solid #000;
-            padding: 8px;
-            font-size: 12px;
-            background: #f8fafc;
         }
 
-        .summary-row {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 4px;
+        .sub-table th, .sub-table td {
+            border: 1px solid #000;
+            padding: 4px;
+            font-size: 10px;
+            text-align: center;
         }
 
         .action-buttons {
-            margin-top: 10px;
+            margin-top: 12px;
             text-align: center;
         }
 
@@ -166,6 +186,7 @@
             font-size: 12px;
             cursor: pointer;
             border-radius: 4px;
+            font-weight: bold;
         }
 
         .action-buttons button:hover {
@@ -188,7 +209,8 @@
         <tr class="branch-select-row">
             <td>
                 <select id="branchSelect">
-                    <option value="Main Branch">Main Branch</option>
+                    <option value="Main Branch">-- Select Branch --</option>
+                    <option value="Branch 1">Branch 1</option>
                     <option value="Branch 2">Branch 2</option>
                 </select>
             </td>
@@ -202,8 +224,8 @@
             <input type="date" id="registerDate">
         </div>
         <div>
-            <label>Prepared By: </label>
-            <input type="text" id="preparedBy" placeholder="Name">
+            <label>Staff Name: </label>
+            <input type="text" id="staffName" placeholder="Staff member">
         </div>
     </div>
 
@@ -211,52 +233,94 @@
     <table class="register-table" id="mainRegisterTable">
         <thead>
             <tr>
-                <th class="th-green" style="width: 15%;">Denomination</th>
-                <th class="th-green" style="width: 8%;">No.s</th>
-                <th class="th-green" style="width: 10%;">Rs.</th>
-                <th class="th-green" style="width: 12%;">Expenses <button type="button" class="add-row-btn" onclick="addDynamicRow('expense')">+Add</button></th>
-                <th class="th-green" style="width: 8%;">Amt</th>
-                <th class="th-green" style="width: 12%;">Vendor <button type="button" class="add-row-btn" onclick="addDynamicRow('vendor')">+Add</button></th>
-                <th class="th-green" style="width: 8%;">Amt</th>
-                <th class="th-green" style="width: 12%;">Unbilled <button type="button" class="add-row-btn" onclick="addDynamicRow('unbilled')">+Add</button></th>
-                <th class="th-green" style="width: 8%;">Amt</th>
-                <th class="th-green" style="width: 7%;">Action</th>
+                <th class="th-green">Denomination</th>
+                <th class="th-green" colspan="2">Tray Balance</th>
+                <th class="th-pink" colspan="2">Expenses <button type="button" class="add-row-btn" onclick="addDynamicRow('expense')">+Add</button></th>
+                <th class="th-blue" colspan="2">Vendor <button type="button" class="add-row-btn" onclick="addDynamicRow('vendor')">+Add</button></th>
+                <th class="th-yellow" colspan="2">Unbilled <button type="button" class="add-row-btn" onclick="addDynamicRow('unbilled')">+Add</button></th>
+                <th class="th-green" colspan="3">Total List</th>
+            </tr>
+            <tr>
+                <th class="th-green"></th>
+                <th class="th-green">No.s</th>
+                <th class="th-green">Rs.</th>
+                <th class="th-pink">For</th>
+                <th class="th-pink">Amt</th>
+                <th class="th-blue">Name</th>
+                <th class="th-blue">Amt</th>
+                <th class="th-yellow">Item</th>
+                <th class="th-yellow">Amt</th>
+                <th class="th-green" colspan="3">Category / Metric</th>
             </tr>
         </thead>
         <tbody id="registerBody">
-            <!-- Denomination rows will be dynamically populated via JS -->
+            <!-- Populated dynamically via JS -->
         </tbody>
         <tfoot>
             <tr>
-                <td class="th-green">Total</td>
+                <td class="th-green">Total Denomination</td>
                 <td class="th-green" id="totalTrayNos">0</td>
-                <td class="th-green" id="totalTrayAmt">0.00</td>
-                <td class="th-green"></td>
-                <td class="th-green" id="totalExpenseAmt">0.00</td>
-                <td class="th-green"></td>
-                <td class="th-green" id="totalVendorAmt">0.00</td>
-                <td class="th-green"></td>
-                <td class="th-green" id="totalUnbilledAmt">0.00</td>
-                <td class="th-green"></td>
+                <td class="th-green" id="totalTrayAmt">0</td>
+                <td class="th-pink">Expn.Total</td>
+                <td class="th-pink" id="totalExpenseAmt">0+</td>
+                <td class="th-blue">Vendor pay Total</td>
+                <td class="th-blue" id="totalVendorAmt">0+</td>
+                <td class="th-yellow">Unbill Total</td>
+                <td class="th-yellow" id="totalUnbilledAmt">0+</td>
+                <td class="th-green" colspan="2">Total Sale</td>
+                <td class="th-green" id="finalTotalSale">0</td>
             </tr>
         </tfoot>
     </table>
 
-    <!-- Summary Box -->
-    <div class="summary-box">
-        <div class="summary-row">
-            <span><strong>Total Tray Balance:</strong></span>
-            <span id="summaryTray">₹0.00</span>
-        </div>
-        <div class="summary-row">
-            <span><strong>Total Deductions (Expenses + Vendor + Unbilled):</strong></span>
-            <span id="summaryDeductions">₹0.00</span>
-        </div>
-        <div class="summary-row" style="font-size: 14px; border-top: 1px solid #000; padding-top: 4px;">
-            <span><strong>Grand Total Accountability:</strong></span>
-            <span id="summaryGrandTotal">₹0.00</span>
-        </div>
-    </div>
+    <!-- Additional Sales & Summary Sections Matching Screenshot -->
+    <table class="sub-table">
+        <tr>
+            <td style="width: 70%; text-align: left;"><strong>Software sale</strong></td>
+            <td><input type="number" id="softwareSale" class="cell-input" value="0" oninput="calculateTotals()"></td>
+        </tr>
+        <tr>
+            <td style="text-align: left;"><strong>Unbill Total</strong></td>
+            <td id="subUnbillTotal">0</td>
+        </tr>
+        <tr>
+            <td style="text-align: left;"><strong>Total Sale</strong></td>
+            <td id="subTotalSale" style="font-weight: bold;">0</td>
+        </tr>
+        <tr>
+            <td style="text-align: left;"><strong>Tally/Untally</strong></td>
+            <td><input type="number" id="tallyDiff" class="cell-input" value="0" oninput="calculateTotals()"></td>
+        </tr>
+        <tr>
+            <td style="text-align: left;" colspan="2">
+                <strong>Remarks:</strong><br>
+                <input type="text" class="cell-input" style="text-align: left;" placeholder="Notes...">
+            </td>
+        </tr>
+    </table>
+
+    <!-- Cash Added Breakdown Sub-section -->
+    <div style="margin-top: 10px; font-size: 11px; font-weight: bold;" class="th-green">Cash Added Breakdown</div>
+    <table class="sub-table" id="cashAddedTable">
+        <thead>
+            <tr>
+                <th>500:</th><th>200:</th><th>100:</th><th>50:</th><th>20:</th><th>10:</th><th>5:</th><th>2:</th><th>1:</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><input type="number" class="cell-input cash-add" data-val="500" value="0" oninput="calculateTotals()"></td>
+                <td><input type="number" class="cell-input cash-add" data-val="200" value="0" oninput="calculateTotals()"></td>
+                <td><input type="number" class="cell-input cash-add" data-val="100" value="0" oninput="calculateTotals()"></td>
+                <td><input type="number" class="cell-input cash-add" data-val="50" value="0" oninput="calculateTotals()"></td>
+                <td><input type="number" class="cell-input cash-add" data-val="20" value="0" oninput="calculateTotals()"></td>
+                <td><input type="number" class="cell-input cash-add" data-val="10" value="0" oninput="calculateTotals()"></td>
+                <td><input type="number" class="cell-input cash-add" data-val="5" value="0" oninput="calculateTotals()"></td>
+                <td><input type="number" class="cell-input cash-add" data-val="2" value="0" oninput="calculateTotals()"></td>
+                <td><input type="number" class="cell-input cash-add" data-val="1" value="0" oninput="calculateTotals()"></td>
+            </tr>
+        </tbody>
+    </table>
 
     <div class="action-buttons">
         <button type="button" onclick="calculateTotals()">Calculate Totals</button>
@@ -264,29 +328,62 @@
 </div>
 
 <script>
-    const denominations = [2000, 500, 200, 100, 50, 20, 10, 5, 2, 1, 'Coins'];
+    const fixedRows = [
+        { label: 'Card', isDenom: false },
+        { label: 'UPI', isDenom: false },
+        { label: 'Pluxee (sodexo)', isDenom: false },
+        { label: '500', isDenom: true, val: 500 },
+        { label: '200', isDenom: true, val: 200 },
+        { label: '100', isDenom: true, val: 100 },
+        { label: '50', isDenom: true, val: 50 },
+        { label: '20', isDenom: true, val: 20 },
+        { label: '10', isDenom: true, val: 10 },
+        { label: '5\'s', isDenom: true, val: 5 },
+        { label: '2\'s', isDenom: true, val: 2 },
+        { label: '1\'s', isDenom: true, val: 1 }
+    ];
+
+    const rightMetrics = [
+        { label: "Grand total", type: "val", id: "metric-grand" },
+        { label: "Expn.Total", type: "val", id: "metric-exp" },
+        { label: "Vendor pay Total", type: "val", id: "metric-vendor" },
+        { label: "Total", type: "val", id: "metric-total" },
+        { label: "", type: "empty" },
+        { label: "", type: "empty" },
+        { label: "", type: "empty" },
+        { label: "", type: "empty" },
+        { label: "", type: "empty" },
+        { label: "", type: "empty" },
+        { label: "", type: "empty" },
+        { label: "", type: "empty" }
+    ];
 
     function initTable() {
         const tbody = document.getElementById('registerBody');
         tbody.innerHTML = '';
 
-        denominations.forEach((denom, index) => {
+        fixedRows.forEach((rowMeta, index) => {
             const row = document.createElement('tr');
+            
+            let denomCell = rowMeta.isDenom ? `₹ ${rowMeta.label}` : rowMeta.label;
+            
             row.innerHTML = `
-                <td class="th-green">₹ ${denom}</td>
-                <td><input type="number" class="cell-input denom-no" data-denom="${denom}" min="0" oninput="calculateTotals()"></td>
-                <td class="denom-rs">0.00</td>
-                <td><input type="text" class="cell-input" placeholder="For"></td>
-                <td><input type="number" class="cell-input exp-amt" min="0" oninput="calculateTotals()"></td>
-                <td><input type="text" class="cell-input" placeholder="Name"></td>
-                <td><input type="number" class="cell-input vendor-amt" min="0" oninput="calculateTotals()"></td>
-                <td><input type="text" class="cell-input" placeholder="Item"></td>
-                <td><input type="number" class="cell-input unbilled-amt" min="0" oninput="calculateTotals()"></td>
-                <td>${index === 0 ? '' : '<button type="button" class="delete-btn" onclick="this.closest(\'tr\').remove(); calculateTotals();">X</button>'}</td>
+                <td class="th-green">${denomCell}</td>
+                <td><input type="number" class="cell-input denom-no" min="0" oninput="calculateTotals()"></td>
+                <td class="denom-rs">0</td>
+                <td><input type="text" class="cell-input" placeholder="${index === 0 ? 'Snacks' : ''}"></td>
+                <td><input type="number" class="cell-input exp-amt" min="0" value="0" oninput="calculateTotals()"></td>
+                <td><input type="text" class="cell-input"></td>
+                <td><input type="number" class="cell-input vendor-amt" min="0" value="0" oninput="calculateTotals()"></td>
+                <td><input type="text" class="cell-input"></td>
+                <td><input type="number" class="cell-input unbilled-amt" min="0" value="0" oninput="calculateTotals()"></td>
+                <td style="font-weight: bold; background: #f8fafc;" colspan="2">${rightMetrics[index].label}</td>
+                <td style="background: #f8fafc;" id="${rightMetrics[index].id || 'm-empty-'+index}">0</td>
             `;
             tbody.appendChild(row);
         });
         document.getElementById('registerDate').valueAsDate = new Date();
+        calculateTotals();
     }
 
     function addDynamicRow(type) {
@@ -295,20 +392,22 @@
         
         let extraFields = '';
         if(type === 'expense') {
-            extraFields = `<td></td><td>0.00</td><td><input type="text" class="cell-input" placeholder="For"></td><td><input type="number" class="cell-input exp-amt" min="0" oninput="calculateTotals()"></td><td></td><td>0.00</td><td></td><td>0.00</td>`;
+            extraFields = `<td><input type="text" class="cell-input" placeholder="For"></td><td><input type="number" class="cell-input exp-amt" min="0" value="0" oninput="calculateTotals()"></td><td></td><td>0</td><td></td><td>0</td>`;
         } else if(type === 'vendor') {
-            extraFields = `<td></td><td>0.00</td><td></td><td>0.00</td><td><input type="text" class="cell-input" placeholder="Name"></td><td><input type="number" class="cell-input vendor-amt" min="0" oninput="calculateTotals()"></td><td></td><td>0.00</td>`;
+            extraFields = `<td></td><td>0</td><td><input type="text" class="cell-input" placeholder="Name"></td><td><input type="number" class="cell-input vendor-amt" min="0" value="0" oninput="calculateTotals()"></td><td></td><td>0</td>`;
         } else if(type === 'unbilled') {
-            extraFields = `<td></td><td>0.00</td><td></td><td>0.00</td><td></td><td>0.00</td><td><input type="text" class="cell-input" placeholder="Item"></td><td><input type="number" class="cell-input unbilled-amt" min="0" oninput="calculateTotals()"></td>`;
+            extraFields = `<td></td><td>0</td><td></td><td>0</td><td><input type="text" class="cell-input" placeholder="Item"></td><td><input type="number" class="cell-input unbilled-amt" min="0" value="0" oninput="calculateTotals()"></td>`;
         }
 
         row.innerHTML = `
-            <td class="th-green">-</td>
-            <td></td><td>0.00</td>
+            <td class="th-green"><button type="button" class="delete-btn" onclick="this.closest('tr').remove(); calculateTotals();">X</button></td>
+            <td></td><td>0</td>
             ${extraFields}
-            <td><button type="button" class="delete-btn" onclick="this.closest('tr').remove(); calculateTotals();">X</button></td>
+            <td colspan="2"></td>
+            <td>0</td>
         `;
         tbody.appendChild(row);
+        calculateTotals();
     }
 
     function calculateTotals() {
@@ -319,18 +418,23 @@
         let totalUnbilled = 0;
 
         document.querySelectorAll('#registerBody tr').forEach(row => {
-            const denomText = row.cells[0].innerText.replace('₹ ', '');
             const noInput = row.querySelector('.denom-no');
             const rsCell = row.querySelector('.denom-rs');
+            const rowLabel = row.cells[0] ? row.cells[0].innerText.replace('₹ ', '') : '';
 
-            if (noInput && denomText !== '-') {
+            if (noInput && noInput.value !== '') {
                 const count = parseFloat(noInput.value) || 0;
-                const val = denomText === 'Coins' ? 1 : parseFloat(denomText);
-                const amt = count * val;
-                if(rsCell) rsCell.innerText = amt.toFixed(2);
+                let val = 0;
+                if (rowLabel === 'Card' || rowLabel === 'UPI' || rowLabel === 'Pluxee (sodexo)') {
+                    val = 1; // Treat multiplier as 1 for non-cash line items if needed, or handle directly
+                } else if (!isNaN(rowLabel)) {
+                    val = parseFloat(rowLabel);
+                } else if (rowLabel.includes('\'s')) {
+                    val = parseFloat(rowLabel);
+                }
                 
-                totalNos += count;
-                totalTrayAmt += amt;
+                const amt = count * (rowMetaVal(rowLabel) || 1); 
+                // Simplified calculation per row mapping
             }
 
             const expInput = row.querySelector('.exp-amt');
@@ -343,16 +447,47 @@
             if (unbilledInput) totalUnbilled += parseFloat(unbilledInput.value) || 0;
         });
 
-        document.getElementById('totalTrayNos').innerText = totalNos;
-        document.getElementById('totalTrayAmt').innerText = totalTrayAmt.toFixed(2);
-        document.getElementById('totalExpenseAmt').innerText = totalExp.toFixed(2);
-        document.getElementById('totalVendorAmt').innerText = totalVendor.toFixed(2);
-        document.getElementById('totalUnbilledAmt').innerText = totalUnbilled.toFixed(2);
+        // Calculate specific tray amounts properly
+        document.querySelectorAll('#registerBody tr').forEach(row => {
+            const denomText = row.cells[0].innerText.replace('₹ ', '');
+            const noInput = row.querySelector('.denom-no');
+            const rsCell = row.querySelector('.denom-rs');
 
-        document.getElementById('summaryTray').innerText = `₹${totalTrayAmt.toFixed(2)}`;
-        const totalDeductions = totalExp + totalVendor + totalUnbilled;
-        document.getElementById('summaryDeductions').innerText = `₹${totalDeductions.toFixed(2)}`;
-        document.getElementById('summaryGrandTotal').innerText = `₹${(totalTrayAmt + totalDeductions).toFixed(2)}`;
+            if (noInput && rsCell && !isNaN(denomText)) {
+                const count = parseFloat(noInput.value) || 0;
+                const amt = count * parseFloat(denomText);
+                rsCell.innerText = amt;
+                totalNos += count;
+                totalTrayAmt += amt;
+            }
+        });
+
+        document.getElementById('totalTrayNos').innerText = totalNos;
+        document.getElementById('totalTrayAmt').innerText = totalTrayAmt;
+        document.getElementById('totalExpenseAmt').innerText = totalExp + '+';
+        document.getElementById('totalVendorAmt').innerText = totalVendor + '+';
+        document.getElementById('totalUnbilledAmt').innerText = totalUnbilled + '+';
+
+        // Subtotals & Final calculations
+        const softwareSale = parseFloat(document.getElementById('softwareSale').value) || 0;
+        document.getElementById('subUnbillTotal').innerText = totalUnbilled;
+        
+        const totalSaleVal = softwareSale + totalUnbilled;
+        document.getElementById('subTotalSale').innerText = totalSaleVal;
+        document.getElementById('finalTotalSale').innerText = totalSaleVal;
+    }
+
+    function rowMetaVal(label) {
+        if(label === '500') return 500;
+        if(label === '200') return 200;
+        if(label === '100') return 100;
+        if(label === '50') return 50;
+        if(label === '20') return 20;
+        if(label === '10') return 10;
+        if(label === '5\'s') return 5;
+        if(label === '2\'s') return 2;
+        if(label === '1\'s') return 1;
+        return 1;
     }
 
     window.onload = initTable;
