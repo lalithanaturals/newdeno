@@ -3,303 +3,210 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Daily Account & Denomination Tally</title>
+    <title>Cash Denomination Register - Lalitha Naturals</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <style>
         :root {
             --primary: #065f46;
-            --primary-hover: #047857;
-            --bg-color: #ffffff;
-            --text-main: #0f172a;
-            --text-muted: #475569;
-            --border-color: #cbd5e1;
+            --border-color: #000000;
         }
 
         body {
             font-family: 'Inter', sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-main);
+            background-color: #f1f5f9;
+            color: #000000;
             margin: 0;
-            padding: 15px 10px;
+            padding: 20px;
         }
 
         .app-container {
-            max-width: 900px;
+            width: 1280px;
             margin: auto;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px -3px rgba(0, 0, 0, 0.08);
+            background: #ffffff;
             padding: 20px;
-            border: 1px solid #e2e8f0;
+            border: 2px solid #000;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+            box-sizing: border-box;
             
-            /* --- GUARANTEED INLINE WATERMARK --- */
-            background-color: #ffffff;
+            /* --- INLINE WATERMARK --- */
             background-image: 
-                linear-gradient(rgba(255, 255, 255, 0.82), rgba(255, 255, 255, 0.82)), 
-                url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 300' width='300' height='300'%3E%3Ctext x='50%25' y='55%25' font-size='220' font-family='Arial, sans-serif' font-weight='bold' fill='%23065f46' fill-opacity='0.08' text-anchor='middle' dominant-baseline='middle'%3E₹%3C/text%3E%3C/svg%3E");
+                linear-gradient(rgba(255, 255, 255, 0.90), rgba(255, 255, 255, 0.90)), 
+                url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 300' width='300' height='300'%3E%3Ctext x='50%25' y='55%25' font-size='220' font-family='Arial, sans-serif' font-weight='bold' fill='%23065f46' fill-opacity='0.06' text-anchor='middle' dominant-baseline='middle'%3E₹%3C/text%3E%3C/svg%3E");
             background-repeat: no-repeat;
             background-position: center center;
-            background-size: 55%;
+            background-size: 40%;
         }
 
-        .header {
-            text-align: center;
-            margin-bottom: 15px;
+        /* Landscape Top Header */
+        .top-header {
+            display: flex;
+            border: 2px solid #000;
+            margin-bottom: 12px;
         }
 
-        .header h1 {
-            font-size: 20px;
-            font-weight: 700;
-            color: #064e3b;
-            margin: 0;
-        }
-
-        .section-header {
-            font-size: 14px;
-            font-weight: 600;
-            color: #065f46;
-            border-bottom: 2px solid #065f46;
-            padding-bottom: 4px;
-            margin: 15px 0 8px 0;
+        .logo-box {
+            width: 250px;
+            padding: 12px;
             display: flex;
             align-items: center;
-            gap: 6px;
+            border-right: 2px solid #000;
+            background: #fff;
         }
 
-        .section-card {
-            border-radius: 8px;
-            padding: 12px;
-            margin-top: 12px;
-            border: 1px solid transparent;
-            background-color: rgba(255, 255, 255, 0.5) !important; 
+        .logo-box h2 {
+            color: #dc2626;
+            font-style: italic;
+            font-weight: 800;
+            font-size: 26px;
+            margin: 0;
+            letter-spacing: -1px;
         }
 
-        .section-expenses { border-color: #fecdd3; background-color: rgba(255, 241, 242, 0.75) !important; }
-        .section-expenses .section-header { color: #9f1239; border-color: #f43f5e; }
-
-        .section-vendor { border-color: #bbf7d0; background-color: rgba(240, 253, 244, 0.75) !important; }
-        .section-vendor .section-header { color: #166534; border-color: #22c55e; }
-
-        .section-unbill { border-color: #bfdbfe; background-color: rgba(239, 246, 255, 0.75) !important; }
-        .section-unbill .section-header { color: #1e40af; border-color: #3b82f6; }
-
-        .section-software { border-color: #e9d5ff; background-color: rgba(250, 245, 255, 0.75) !important; }
-        .section-software .section-header { color: #6b21a8; border-color: #a855f7; }
-
-        .grid-2 {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 10px;
-        }
-
-        .grid-4 {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 10px;
-        }
-
-        .form-group {
-            margin-bottom: 8px;
-        }
-
-        label {
+        .logo-box span {
+            color: #16a34a;
+            font-size: 14px;
             display: block;
-            font-weight: 500;
-            font-size: 12px;
-            color: var(--text-muted);
-            margin-bottom: 3px;
+            letter-spacing: 2px;
+            font-weight: 700;
         }
 
-        .mandatory::after {
-            content: " *";
-            color: #e11d48;
-            font-weight: bold;
+        .title-branch-box {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
         }
 
-        input, select, textarea {
-            width: 100%;
-            padding: 6px 10px;
-            border: 1px solid var(--border-color);
-            border-radius: 6px;
-            font-size: 13px;
-            font-family: 'Inter', sans-serif;
-            box-sizing: border-box;
-            background-color: rgba(255, 255, 255, 0.95);
-            color: #0f172a;
-            transition: all 0.2s ease;
+        .register-title {
+            background: #fef08a;
+            color: #000;
+            font-weight: 700;
+            text-align: center;
+            padding: 10px;
+            font-size: 18px;
+            border-bottom: 2px solid #000;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
-        input:focus, select:focus, textarea:focus {
+        .branch-select-row {
+            background: #fef08a;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .branch-select-row select {
+            font-size: 18px;
+            font-weight: 700;
+            text-align: center;
+            background: transparent;
+            border: none;
+            cursor: pointer;
             outline: none;
-            border-color: #065f46;
-            box-shadow: 0 0 0 2px rgba(6, 95, 70, 0.15);
-            background-color: #fff;
+            width: 100%;
         }
 
-        .table-wrapper {
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            overflow: hidden;
-            margin-top: 6px;
-            background-color: rgba(255, 255, 255, 0.85);
+        .meta-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+            font-weight: 600;
+            font-size: 14px;
         }
 
-        table {
+        .meta-row input[type="date"] {
+            width: 160px;
+            padding: 6px;
+            font-size: 13px;
+        }
+
+        .meta-row input[type="text"] {
+            width: 200px;
+            padding: 6px;
+            font-size: 13px;
+        }
+
+        /* Landscape Master Grid Table */
+        .register-table {
             width: 100%;
             border-collapse: collapse;
-            text-align: left;
-        }
-
-        th, td {
-            padding: 6px 10px;
-            font-size: 13px;
-            border-bottom: 1px solid #e2e8f0;
-        }
-
-        th {
-            background-color: #065f46;
-            color: #ffffff;
-            font-weight: 600;
             text-align: center;
-        }
-
-        td {
-            text-align: center;
-        }
-
-        td:first-child {
-            font-weight: 600;
-            color: #0f172a;
-        }
-
-        table tr:last-child td {
-            border-bottom: none;
-        }
-
-        .mode-banner {
-            background: rgba(248, 250, 252, 0.9);
-            border: 1px solid #cbd5e1;
-            border-radius: 6px;
-            padding: 8px 12px;
-            margin-top: 10px;
-            display: flex;
-            justify-content: space-between;
-            font-size: 12px;
-            font-weight: 600;
-            color: #065f46;
-        }
-
-        .closing-balance-box {
-            background: rgba(240, 253, 244, 0.95);
-            border: 1px solid #059669;
-            border-radius: 6px;
-            padding: 8px 12px;
-            margin-top: 12px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-weight: 700;
             font-size: 13px;
-            color: #064e3b;
         }
 
-        .closing-balance-box span:last-child {
-            font-size: 15px;
-            color: #047857;
+        .register-table th, .register-table td {
+            border: 1px solid #000;
+            padding: 6px 8px;
+            vertical-align: middle;
         }
 
-        .dynamic-row {
-            display: flex;
-            gap: 8px;
-            margin-bottom: 6px;
-            align-items: center;
+        .th-green {
+            background-color: #166534;
+            color: white;
+            font-weight: 600;
         }
 
-        .dynamic-row input {
-            flex: 2;
+        /* Color Coding */
+        .bg-yellow { background-color: #fef08a; font-weight: 700; }
+        .bg-red { background-color: #fca5a5; font-weight: 700; }
+        .bg-green { background-color: #86efac; font-weight: 700; }
+        .bg-blue { background-color: #93c5fd; font-weight: 700; }
+        .bg-gray { background-color: #e2e8f0; }
+
+        input[type="number"], input[type="text"].cell-input {
+            width: 100%;
+            border: none;
+            background: transparent;
+            text-align: center;
+            font-size: 13px;
+            outline: none;
+            font-family: 'Inter', sans-serif;
         }
 
-        .dynamic-row input.amount-input {
-            flex: 1;
+        /* Remove spin buttons */
+        input[type=number]::-webkit-inner-spin-button, 
+        input[type=number]::-webkit-outer-spin-button { 
+            -webkit-appearance: none; 
+            margin: 0; 
+        }
+        input[type=number] {
+            -moz-appearance: textfield;
         }
 
-        .btn-icon {
+        .text-left { text-align: left !important; padding-left: 10px !important; }
+        .text-right { text-align: right !important; padding-right: 10px !important; }
+
+        .add-row-btn {
+            background: #f1f5f9;
+            border: 1px dashed #64748b;
+            color: #334155;
+            font-size: 11px;
+            font-weight: 600;
+            padding: 2px 6px;
+            cursor: pointer;
+            border-radius: 3px;
+            margin-left: 6px;
+        }
+        .add-row-btn:hover {
+            background: #e2e8f0;
+        }
+
+        .remove-btn {
             background: #fee2e2;
             color: #dc2626;
             border: none;
-            width: 30px;
-            height: 30px;
-            border-radius: 6px;
+            font-size: 10px;
+            padding: 2px 6px;
             cursor: pointer;
-            font-weight: bold;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            border-radius: 3px;
+            margin-left: 4px;
         }
-
-        .btn-secondary {
-            background: rgba(255, 255, 255, 0.9);
-            color: #334155;
-            border: 1px dashed #cbd5e1;
-            padding: 6px 12px;
-            font-size: 12px;
-            font-weight: 600;
-            cursor: pointer;
-            border-radius: 6px;
-            width: 100%;
-            margin-top: 4px;
-        }
-
-        .summary-container-group {
-            margin-top: 15px;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        .summary-card {
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
-            background-color: rgba(255, 255, 255, 0.9);
-        }
-
-        .summary-title-bar {
-            background: #065f46;
-            color: white;
-            text-align: center;
-            padding: 8px;
-            font-weight: 600;
-            font-size: 13px;
-        }
-
-        .summary-row {
-            display: flex;
-            justify-content: space-between;
-            padding: 8px 12px;
-            border-bottom: 1px solid #e2e8f0;
-            font-size: 13px;
-            font-weight: 600;
-        }
-
-        .summary-row:last-child {
-            border-bottom: none;
-        }
-
-        .s-grand { background-color: rgba(254, 240, 138, 0.85); color: #713f12; }
-        .s-expn { background-color: rgba(254, 226, 226, 0.85); color: #991b1b; }
-        .s-vendor { background-color: rgba(220, 252, 231, 0.85); color: #166534; }
-        .s-total { background-color: rgba(226, 232, 240, 0.85); color: #334155; }
-        .s-software { background-color: transparent; color: #0f172a; }
-        .s-unbill { background-color: rgba(219, 234, 254, 0.85); color: #1e40af; }
-        .s-totalsale { background-color: rgba(254, 240, 138, 0.85); color: #713f12; }
-        .s-tally { background-color: rgba(226, 232, 240, 0.85); color: #0f172a; }
 
         .btn-container {
             display: flex;
-            gap: 10px;
-            margin-top: 15px;
+            gap: 12px;
+            margin-top: 20px;
             justify-content: flex-start;
         }
 
@@ -307,37 +214,27 @@
             background: #065f46;
             color: white;
             border: none;
-            padding: 8px 14px;
-            font-size: 12px;
+            padding: 8px 16px;
+            font-size: 13px;
             font-weight: 600;
             cursor: pointer;
-            border-radius: 6px;
-            width: auto;
-        }
-
-        .submit-btn:hover {
-            background: #047857;
+            border-radius: 4px;
         }
 
         .clear-btn {
             background: #e11d48;
             color: white;
             border: none;
-            padding: 8px 14px;
-            font-size: 12px;
+            padding: 8px 16px;
+            font-size: 13px;
             font-weight: 600;
             cursor: pointer;
-            border-radius: 6px;
-            width: auto;
-        }
-
-        .clear-btn:hover {
-            background: #be123c;
+            border-radius: 4px;
         }
 
         #confirmationPanel {
             display: none;
-            background: rgba(248, 250, 252, 0.98);
+            background: #f8fafc;
             border: 2px solid #065f46;
             border-radius: 8px;
             padding: 15px;
@@ -353,13 +250,13 @@
         }
 
         .conf-details {
-            font-size: 12px;
+            font-size: 13px;
             color: #334155;
             margin-bottom: 12px;
             line-height: 1.4;
             background: #ffffff;
             padding: 10px;
-            border-radius: 6px;
+            border-radius: 4px;
             border: 1px solid #cbd5e1;
         }
 
@@ -369,162 +266,240 @@
         }
 
         .btn-confirm { background: #059669; color: white; border: none; padding: 6px 12px; border-radius: 4px; font-weight: 600; cursor: pointer; flex: 1; font-size: 12px; }
-        .btn-confirm:hover { background: #047857; }
-        
         .btn-edit { background: #d97706; color: white; border: none; padding: 6px 12px; border-radius: 4px; font-weight: 600; cursor: pointer; flex: 1; font-size: 12px; }
-        .btn-edit:hover { background: #b45309; }
-
         .btn-close { background: #64748b; color: white; border: none; padding: 6px 12px; border-radius: 4px; font-weight: 600; cursor: pointer; flex: 1; font-size: 12px; }
-        .btn-close:hover { background: #475569; }
     </style>
 </head>
 <body>
 
 <div class="app-container" id="printableArea">
-    <div class="header">
-        <h1>Daily End Sale & Tally Report</h1>
-    </div>
-
-    <!-- Metadata Section -->
-    <div class="grid-4">
-        <div class="form-group">
-            <label>Date</label>
-            <input type="date" id="reportDate">
+    <!-- Top Header Match -->
+    <div class="top-header">
+        <div class="logo-box">
+            <div>
+                <h2>Lalitha</h2>
+                <span>NATURALS</span>
+            </div>
         </div>
-        <div class="form-group">
-            <label class="mandatory">Branch Name</label>
-            <select id="branchName" onchange="loadSavedOpeningBalance()">
-                <option value="Gajuwaka" selected>Gajuwaka</option>
-                <option value="Kurmannapalem">Kurmannapalem</option>
-            </select>
-        </div>
-        <div class="form-group">
-            <label>Staff Name</label>
-            <input type="text" id="staffName" placeholder="Staff member">
-        </div>
-        <div class="form-group">
-            <label class="mandatory">Opening Balance (₹)</label>
-            <input type="number" id="openingBalance" value="0" onfocus="handleFocus(this)" onblur="handleBlur(this)" oninput="calculateAll()">
+        <div class="title-branch-box">
+            <div class="register-title">CASH DENOMINATION REGISTER</div>
+            <div class="branch-select-row">
+                <select id="branchName" tabindex="1" onchange="loadSavedOpeningBalance()">
+                    <option value="" disabled selected>-- Select Branch --</option>
+                    <option value="Gajuwaka">Gajuwaka</option>
+                    <option value="Kurmannapalem">Kurmannapalem</option>
+                </select>
+            </div>
         </div>
     </div>
 
-    <!-- Digital & Payment Modes -->
-    <div style="font-size: 14px; font-weight: 600; color: #065f46; border-bottom: 2px solid #065f46; padding-bottom: 4px; margin: 15px 0 8px 0;">Digital & Payment Modes</div>
-    <div class="grid-4">
-        <div class="form-group">
-            <label>UPI Transactions</label>
-            <input type="number" id="upi" value="0" onfocus="handleFocus(this)" onblur="handleBlur(this)" oninput="calculateAll()">
-        </div>
-        <div class="form-group">
-            <label>Card Transactions</label>
-            <input type="number" id="card" value="0" onfocus="handleFocus(this)" onblur="handleBlur(this)" oninput="calculateAll()">
-        </div>
-        <div class="form-group">
-            <label>Pluxee / Sodexo</label>
-            <input type="number" id="sodexo" value="0" onfocus="handleFocus(this)" onblur="handleBlur(this)" oninput="calculateAll()">
-        </div>
-        <div class="form-group">
-            <label>Cash Added / Change</label>
-            <input type="number" id="cashAdded" value="0" onfocus="handleFocus(this)" onblur="handleBlur(this)" oninput="calculateAll()">
-        </div>
+    <div class="meta-row">
+        <div>Date: <input type="date" id="reportDate" tabindex="2"></div>
+        <div>Staff Name: <input type="text" id="staffName" tabindex="3" placeholder="Staff member"></div>
     </div>
 
-    <!-- Cash Denominations -->
-    <div style="font-size: 14px; font-weight: 600; color: #065f46; border-bottom: 2px solid #065f46; padding-bottom: 4px; margin: 15px 0 8px 0;">Cash Denominations</div>
-    <div class="table-wrapper">
-        <table>
-            <thead>
-                <tr>
-                    <th>Denomination</th>
-                    <th>Count (Nos)</th>
-                    <th>Subtotal Amount (₹)</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr><td>₹500</td><td><input type="number" class="denom-count" data-val="500" value="0" onfocus="handleFocus(this)" onblur="handleBlur(this)" oninput="calculateAll()"></td><td id="amt-500">0</td></tr>
-                <tr><td>₹200</td><td><input type="number" class="denom-count" data-val="200" value="0" onfocus="handleFocus(this)" onblur="handleBlur(this)" oninput="calculateAll()"></td><td id="amt-200">0</td></tr>
-                <tr><td>₹100</td><td><input type="number" class="denom-count" data-val="100" value="0" onfocus="handleFocus(this)" onblur="handleBlur(this)" oninput="calculateAll()"></td><td id="amt-100">0</td></tr>
-                <tr><td>₹50</td><td><input type="number" class="denom-count" data-val="50" value="0" onfocus="handleFocus(this)" onblur="handleBlur(this)" oninput="calculateAll()"></td><td id="amt-50">0</td></tr>
-                <tr><td>₹20</td><td><input type="number" class="denom-count" data-val="20" value="0" onfocus="handleFocus(this)" onblur="handleBlur(this)" oninput="calculateAll()"></td><td id="amt-20">0</td></tr>
-                <tr><td>₹10</td><td><input type="number" class="denom-count" data-val="10" value="0" onfocus="handleFocus(this)" onblur="handleBlur(this)" oninput="calculateAll()"></td><td id="amt-10">0</td></tr>
-                <tr><td>₹5</td><td><input type="number" class="denom-count" data-val="5" value="0" onfocus="handleFocus(this)" onblur="handleBlur(this)" oninput="calculateAll()"></td><td id="amt-5">0</td></tr>
-                <tr><td>₹2</td><td><input type="number" class="denom-count" data-val="2" value="0" onfocus="handleFocus(this)" onblur="handleBlur(this)" oninput="calculateAll()"></td><td id="amt-2">0</td></tr>
-                <tr><td>₹1</td><td><input type="number" class="denom-count" data-val="1" value="0" onfocus="handleFocus(this)" onblur="handleBlur(this)" oninput="calculateAll()"></td><td id="amt-1">0</td></tr>
-            </tbody>
-        </table>
-    </div>
+    <!-- Master Grid Table (Landscape Optimized) -->
+    <table class="register-table">
+        <thead>
+            <tr>
+                <th class="th-green" style="width: 14%;">Denomination</th>
+                <th class="th-green" colspan="2" style="width: 14%;">Tray Balance</th>
+                <th class="th-green" colspan="2" style="width: 22%;">Expenses <button type="button" class="add-row-btn" onclick="addExpenseRow()">+ Add</button></th>
+                <th class="th-green" colspan="2" style="width: 22%;">Vendor payments <button type="button" class="add-row-btn" onclick="addVendorRow()">+ Add</button></th>
+                <th class="th-green" colspan="2" style="width: 14%;">Unbilled <button type="button" class="add-row-btn" onclick="addUnbillRow()">+ Add</button></th>
+                <th class="th-green" colspan="2" style="width: 14%;">Total List</th>
+            </tr>
+            <tr>
+                <th class="th-green"></th>
+                <th class="th-green" style="width: 6%;">No.s</th>
+                <th class="th-green" style="width: 8%;">Rs.</th>
+                <th class="th-green" style="width: 14%;">For</th>
+                <th class="th-green" style="width: 8%;">Amount</th>
+                <th class="th-green" style="width: 14%;">Name</th>
+                <th class="th-green" style="width: 8%;">Amount</th>
+                <th class="th-green" style="width: 9%;">Item</th>
+                <th class="th-green" style="width: 5%;">Amount</th>
+                <th class="th-green text-left" colspan="2"></th>
+            </tr>
+        </thead>
+        <tbody id="gridBody">
+            <tr>
+                <td><strong>Card</strong></td>
+                <td>-</td>
+                <td><input type="number" id="card" tabindex="4" value="0" onfocus="handleFocus(this)" onblur="handleBlur(this)" oninput="calculateAll()"></td>
+                <td><input type="text" class="cell-input exp-name" value="Snacks" tabindex="20"></td>
+                <td><input type="number" class="cell-input exp-amt" value="0" tabindex="21" onfocus="handleFocus(this)" onblur="handleBlur(this)" oninput="calculateAll()"></td>
+                <td><input type="text" class="cell-input vendor-name" value="" tabindex="30"></td>
+                <td><input type="number" class="cell-input vendor-amt" value="0" tabindex="31" onfocus="handleFocus(this)" onblur="handleBlur(this)" oninput="calculateAll()"></td>
+                <td><input type="text" class="cell-input unbill-name" value="" tabindex="40"></td>
+                <td><input type="number" class="cell-input unbill-amt" value="0" tabindex="41" onfocus="handleFocus(this)" onblur="handleBlur(this)" oninput="calculateAll()"></td>
+                <td class="bg-yellow text-left">Grand total</td>
+                <td class="bg-yellow" id="lblGrandTotal">0</td>
+            </tr>
 
-    <!-- Mode Totals Banner -->
-    <div class="mode-banner">
-        <span>UPI: <span id="displayUPI">₹0</span></span>
-        <span>Card: <span id="displayCard">₹0</span></span>
-        <span>Pluxee: <span id="displayPluxee">₹0</span></span>
-        <span>Net Cash: <span id="displayCash">₹0</span></span>
-    </div>
+            <!-- Dynamic extra rows container anchors -->
+            <tr id="expenseRowsEnd"></tr>
+            <tr id="vendorRowsEnd"></tr>
+            <tr id="unbillRowsEnd"></tr>
 
-    <!-- Closing Balance Display Box -->
-    <div class="closing-balance-box">
-        <span>Closing Balance (Total of all cash denominations excluding ₹500):</span>
-        <span id="displayClosingBalance">₹0</span>
-    </div>
-
-    <!-- Expenses Section -->
-    <div class="section-card section-expenses">
-        <div class="section-header">Expenses Breakdown</div>
-        <div id="expensesList"></div>
-        <button type="button" class="btn-secondary" onclick="addExpenseRow()">+ Add Expense Item</button>
-    </div>
-
-    <!-- Vendor Payments Section -->
-    <div class="section-card section-vendor">
-        <div class="section-header">Vendor Payments Breakdown</div>
-        <div id="vendorList"></div>
-        <button type="button" class="btn-secondary" onclick="addVendorRow()">+ Add Vendor Payment Item</button>
-    </div>
-
-    <!-- Unbilling Section -->
-    <div class="section-card section-unbill">
-        <div class="section-header">Unbilled Items Breakdown</div>
-        <div id="unbillList"></div>
-        <button type="button" class="btn-secondary" onclick="addUnbillRow()">+ Add Unbilled Item</button>
-    </div>
-
-    <!-- Software Sale Section -->
-    <div class="section-card section-software">
-        <div class="section-header">Software Sale</div>
-        <div class="form-group" style="margin-top: 6px; margin-bottom: 0;">
-            <label class="mandatory">Software Sale Amount (₹)</label>
-            <input type="number" id="softwareSale" value="0" onfocus="handleFocus(this)" onblur="handleBlur(this)" oninput="calculateAll()">
-        </div>
-    </div>
-
-    <!-- Separated Summary Cards Containers -->
-    <div class="summary-container-group">
-        <div class="summary-card">
-            <div class="summary-title-bar">Account Totals List</div>
-            <div class="summary-row s-grand"><span>Grand total :</span> <span id="lblGrandTotal">₹0</span></div>
-            <div class="summary-row s-expn"><span>Expn.Total : +</span> <span id="lblExpnTotal">₹0</span></div>
-            <div class="summary-row s-vendor"><span>Vendor pay Total : +</span> <span id="lblVendorTotal">₹0</span></div>
-            <div class="summary-row s-total"><span>Total :</span> <span id="lblTotal">₹0</span></div>
-        </div>
-
-        <div class="summary-card">
-            <div class="summary-title-bar" style="background: #047857;">Sales Tally Reconciliation</div>
-            <div class="summary-row s-software"><span>Software sale :</span> <span id="lblSoftwareSale">₹0</span></div>
-            <div class="summary-row s-unbill"><span>Unbill Total : +</span> <span id="lblUnbillTotal">₹0</span></div>
-            <div class="summary-row s-totalsale"><span>Total Sale :</span> <span id="lblTotalSale">₹0</span></div>
-            <div class="summary-row s-tally"><span>Tally/Untally :</span> <span id="lblTally">₹0</span></div>
-        </div>
-    </div>
-
-    <!-- Remarks -->
-    <div class="form-group" style="margin-top: 15px;">
-        <label>Remarks / Notes</label>
-        <textarea id="remarks" placeholder="Optional notes for the day..." rows="2"></textarea>
-    </div>
+            <tr>
+                <td><strong>UPI</strong></td>
+                <td>-</td>
+                <td><input type="number" id="upi" tabindex="5" value="0" onfocus="handleFocus(this)" onblur="handleBlur(this)" oninput="calculateAll()"></td>
+                <td colspan="2" style="border-right:1px solid #000;"></td>
+                <td colspan="2" style="border-right:1px solid #000;"></td>
+                <td colspan="2"></td>
+                <td class="bg-red text-left">Expn.Total</td>
+                <td class="bg-red" id="lblExpnTotal">0 +</td>
+            </tr>
+            <tr>
+                <td><strong>Pluxee (sodexo)</strong></td>
+                <td>-</td>
+                <td><input type="number" id="sodexo" tabindex="6" value="0" onfocus="handleFocus(this)" onblur="handleBlur(this)" oninput="calculateAll()"></td>
+                <td colspan="2" style="border-right:1px solid #000;"></td>
+                <td colspan="2" style="border-right:1px solid #000;"></td>
+                <td colspan="2"></td>
+                <td class="bg-green text-left">Vendor pay Total</td>
+                <td class="bg-green" id="lblVendorTotal">0 +</td>
+            </tr>
+            <tr>
+                <td><strong>500</strong></td>
+                <td><input type="number" class="denom-count" tabindex="7" data-val="500" value="0" onfocus="handleFocus(this)" onblur="handleBlur(this)" oninput="calculateAll()"></td>
+                <td id="amt-500">0</td>
+                <td colspan="6" style="border:none;"></td>
+                <td class="bg-gray text-left">Total</td>
+                <td class="bg-gray" id="lblTotal">0</td>
+            </tr>
+            <tr>
+                <td><strong>200</strong></td>
+                <td><input type="number" class="denom-count" tabindex="8" data-val="200" value="0" onfocus="handleFocus(this)" onblur="handleBlur(this)" oninput="calculateAll()"></td>
+                <td id="amt-200">0</td>
+                <td colspan="6" style="border:none;"></td>
+                <td colspan="2" style="border:none;"></td>
+            </tr>
+            <tr>
+                <td><strong>100</strong></td>
+                <td><input type="number" class="denom-count" tabindex="9" data-val="100" value="0" onfocus="handleFocus(this)" onblur="handleBlur(this)" oninput="calculateAll()"></td>
+                <td id="amt-100">0</td>
+                <td colspan="6" style="border:none;"></td>
+                <td class="text-left" style="font-weight:600;">Software sale</td>
+                <td><input type="number" id="softwareSale" tabindex="50" value="0" onfocus="handleFocus(this)" onblur="handleBlur(this)" oninput="calculateAll()" style="width:100%; border:none; background:transparent; text-align:center; font-size:13px; font-family:'Inter'; outline:none;"></td>
+            </tr>
+            <tr>
+                <td><strong>50</strong></td>
+                <td><input type="number" class="denom-count" tabindex="10" data-val="50" value="0" onfocus="handleFocus(this)" onblur="handleBlur(this)" oninput="calculateAll()"></td>
+                <td id="amt-50">0</td>
+                <td colspan="6" style="border:none;"></td>
+                <td class="bg-blue text-left">Unbill Total</td>
+                <td class="bg-blue" id="lblUnbillTotal">0 +</td>
+            </tr>
+            <tr>
+                <td><strong>20</strong></td>
+                <td><input type="number" class="denom-count" tabindex="11" data-val="20" value="0" onfocus="handleFocus(this)" onblur="handleBlur(this)" oninput="calculateAll()"></td>
+                <td id="amt-20">0</td>
+                <td colspan="6" style="border:none;"></td>
+                <td class="bg-yellow text-left">Total Sale</td>
+                <td class="bg-yellow" id="lblTotalSale">0</td>
+            </tr>
+            <tr>
+                <td><strong>10</strong></td>
+                <td><input type="number" class="denom-count" tabindex="12" data-val="10" value="0" onfocus="handleFocus(this)" onblur="handleBlur(this)" oninput="calculateAll()"></td>
+                <td id="amt-10">0</td>
+                <td colspan="6" style="border:none;"></td>
+                <td class="bg-gray text-left">Tally/Untally</td>
+                <td class="bg-gray" id="lblTally">0</td>
+            </tr>
+            <tr>
+                <td><strong>5's</strong></td>
+                <td><input type="number" class="denom-count" tabindex="13" data-val="5" value="0" onfocus="handleFocus(this)" onblur="handleBlur(this)" oninput="calculateAll()"></td>
+                <td id="amt-5">0</td>
+                <td colspan="6" style="border:none;"></td>
+                <td colspan="2" rowspan="5" style="vertical-align: top; text-align: left; padding: 8px;">
+                    <strong>Remarks:</strong><br>
+                    <textarea id="remarks" tabindex="60" rows="6" style="width:100%; border:none; resize:none; font-family:'Inter'; font-size:12px; background:transparent; outline:none;" placeholder="Notes..."></textarea>
+                </td>
+            </tr>
+            <tr>
+                <td><strong>2's</strong></td>
+                <td><input type="number" class="denom-count" tabindex="14" data-val="2" value="0" onfocus="handleFocus(this)" onblur="handleBlur(this)" oninput="calculateAll()"></td>
+                <td id="amt-2">0</td>
+                <td colspan="6" style="border:none;"></td>
+            </tr>
+            <tr>
+                <td><strong>1's</strong></td>
+                <td><input type="number" class="denom-count" tabindex="15" data-val="1" value="0" onfocus="handleFocus(this)" onblur="handleBlur(this)" oninput="calculateAll()"></td>
+                <td id="amt-1">0</td>
+                <td colspan="6" style="border:none;"></td>
+            </tr>
+            <tr>
+                <td><strong>Total Denomination</strong></td>
+                <td>-</td>
+                <td id="totalDenomSum">0</td>
+                <td colspan="6" style="border:none;"></td>
+            </tr>
+            <!-- Cash Added Breakdown Section -->
+            <tr>
+                <td colspan="3" style="background:#e2e8f0; font-weight:700; text-align:left; padding-left:10px;">Cash Added Breakdown</td>
+                <td colspan="6" style="background:#e2e8f0; text-align:left; font-size:11px; padding:4px;">Enter notes count (500, 200, 100, 50, 20, 10, 5, 2, 1)</td>
+            </tr>
+            <tr>
+                <td colspan="9" style="padding: 0; border: none;">
+                    <table style="width:100%; border-collapse:collapse; text-align:center; font-size:12px;">
+                        <tr style="background:#f8fafc;">
+                            <td style="border:1px solid #000; width:11%;">500: <input type="number" class="added-count" data-val="500" value="0" onfocus="handleFocus(this)" onblur="handleBlur(this)" oninput="calculateAll()"></td>
+                            <td style="border:1px solid #000; width:11%;">200: <input type="number" class="added-count" data-val="200" value="0" onfocus="handleFocus(this)" onblur="handleBlur(this)" oninput="calculateAll()"></td>
+                            <td style="border:1px solid #000; width:11%;">100: <input type="number" class="added-count" data-val="100" value="0" onfocus="handleFocus(this)" onblur="handleBlur(this)" oninput="calculateAll()"></td>
+                            <td style="border:1px solid #000; width:11%;">50: <input type="number" class="added-count" data-val="50" value="0" onfocus="handleFocus(this)" onblur="handleBlur(this)" oninput="calculateAll()"></td>
+                            <td style="border:1px solid #000; width:11%;">20: <input type="number" class="added-count" data-val="20" value="0" onfocus="handleFocus(this)" onblur="handleBlur(this)" oninput="calculateAll()"></td>
+                            <td style="border:1px solid #000; width:11%;">10: <input type="number" class="added-count" data-val="10" value="0" onfocus="handleFocus(this)" onblur="handleBlur(this)" oninput="calculateAll()"></td>
+                            <td style="border:1px solid #000; width:11%;">5: <input type="number" class="added-count" data-val="5" value="0" onfocus="handleFocus(this)" onblur="handleBlur(this)" oninput="calculateAll()"></td>
+                            <td style="border:1px solid #000; width:8%;">2: <input type="number" class="added-count" data-val="2" value="0" onfocus="handleFocus(this)" onblur="handleBlur(this)" oninput="calculateAll()"></td>
+                            <td style="border:1px solid #000; width:8%;">1: <input type="number" class="added-count" data-val="1" value="0" onfocus="handleFocus(this)" onblur="handleBlur(this)" oninput="calculateAll()"></td>
+                        </tr>
+                    </table>
+                </td>
+                <td colspan="2" style="border:none;"></td>
+            </tr>
+            <tr>
+                <td><strong>Cash added (–)</strong></td>
+                <td>-</td>
+                <td id="displayCashAddedSum">0</td>
+                <td colspan="6" style="border:none;"></td>
+                <td colspan="2" rowspan="2" class="bg-yellow" style="font-size: 18px; font-weight: 800; vertical-align: middle;">TOTAL SALE</td>
+            </tr>
+            <tr>
+                <td><strong>Total</strong></td>
+                <td>-</td>
+                <td id="displayNetCashSum">0</td>
+                <td class="bg-red">Expn.Total</td>
+                <td class="bg-green">Vendor pay Total</td>
+                <td class="bg-blue" colspan="2">Unbill Total</td>
+                <td colspan="2"></td>
+            </tr>
+            <tr>
+                <td class="text-left"><strong>Today Opening balance (–)</strong></td>
+                <td>-</td>
+                <td><input type="number" id="openingBalance" tabindex="16" value="0" onfocus="handleFocus(this)" onblur="handleBlur(this)" oninput="calculateAll()"></td>
+                <td class="bg-gray text-left" style="font-weight:700;">Closing balance:</td>
+                <td class="bg-gray" id="displayClosingBalance" style="font-weight:700;">0</td>
+                <td colspan="4"></td>
+                <td colspan="2" style="background:#fef08a;" id="lblTotalSaleBox">0</td>
+            </tr>
+            <tr>
+                <td class="bg-yellow text-left"><strong>Grand total</strong></td>
+                <td class="bg-yellow">-</td>
+                <td class="bg-yellow" id="grandTotalCell">0</td>
+                <td colspan="6"></td>
+                <td colspan="2" style="text-align:right; font-weight:bold; padding-top:18px; border-top:2px solid #000;">
+                    <div id="signStaffName" style="font-size:14px; font-weight:800; margin-bottom:4px;"></div>
+                    Cashier signature
+                </td>
+            </tr>
+        </tbody>
+    </table>
 
     <!-- In-Page Confirmation Panel -->
-    <div id="confirmationPanel">
+    <div id="confirmationPanel" data-html2canvas-ignore="true">
         <div class="conf-title">Please Review Your Report Before Submitting</div>
         <div class="conf-details" id="confDetailsText"></div>
         <div class="conf-btn-group">
@@ -535,21 +510,74 @@
     </div>
 </div>
 
-<div class="btn-container app-container" style="padding-top: 0; border: none; box-shadow: none; background: transparent;" id="mainButtonContainer">
+<div class="btn-container app-container" style="padding-top: 0; border: none; box-shadow: none; background: transparent;" id="mainButtonContainer" data-html2canvas-ignore="true">
     <button class="submit-btn" onclick="reviewReport()">Review & Submit Report</button>
     <button class="clear-btn" onclick="clearForm()">Clear & Reset Form</button>
 </div>
 
 <script>
     window.onload = function() {
-        addExpenseRow();
-        addVendorRow();
-        addUnbillRow();
         document.getElementById('reportDate').valueAsDate = new Date();
         loadSavedOpeningBalance();
+        setupStaffSignatureSync();
     };
 
-    // Helper functions to clear '0' on click/focus and restore '0' if left blank
+    function setupStaffSignatureSync() {
+        const staffInput = document.getElementById('staffName');
+        const signDiv = document.getElementById('signStaffName');
+        staffInput.addEventListener('input', function() {
+            signDiv.innerText = this.value.trim();
+        });
+    }
+
+    function addExpenseRow() {
+        let anchor = document.getElementById('expenseRowsEnd');
+        let tr = document.createElement('tr');
+        tr.className = 'expense-dynamic-row';
+        tr.innerHTML = `
+            <td></td><td></td><td></td>
+            <td><input type="text" class="cell-input exp-name" placeholder="Item"></td>
+            <td><input type="number" class="cell-input exp-amt" value="0" onfocus="handleFocus(this)" onblur="handleBlur(this)" oninput="calculateAll()"> <button type="button" class="remove-btn" onclick="this.closest('tr').remove(); calculateAll();">✕</button></td>
+            <td colspan="2" style="border-right:1px solid #000;"></td>
+            <td colspan="2"></td>
+            <td colspan="2" style="border:none;"></td>
+        `;
+        anchor.parentNode.insertBefore(tr, anchor);
+        calculateAll();
+    }
+
+    function addVendorRow() {
+        let anchor = document.getElementById('vendorRowsEnd');
+        let tr = document.createElement('tr');
+        tr.className = 'vendor-dynamic-row';
+        tr.innerHTML = `
+            <td></td><td></td><td></td>
+            <td colspan="2" style="border-right:1px solid #000;"></td>
+            <td><input type="text" class="cell-input vendor-name" placeholder="Name"></td>
+            <td><input type="number" class="cell-input vendor-amt" value="0" onfocus="handleFocus(this)" onblur="handleBlur(this)" oninput="calculateAll()"> <button type="button" class="remove-btn" onclick="this.closest('tr').remove(); calculateAll();">✕</button></td>
+            <td colspan="2"></td>
+            <td colspan="2" style="border:none;"></td>
+        `;
+        anchor.parentNode.insertBefore(tr, anchor);
+        calculateAll();
+    }
+
+    function addUnbillRow() {
+        let anchor = document.getElementById('unbillRowsEnd');
+        let tr = document.createElement('tr');
+        tr.className = 'unbill-dynamic-row';
+        tr.innerHTML = `
+            <td></td><td></td><td></td>
+            <td colspan="2" style="border-right:1px solid #000;"></td>
+            <td colspan="2" style="border-right:1px solid #000;"></td>
+            <td><input type="text" class="cell-input unbill-name" placeholder="Item"></td>
+            <td><input type="number" class="cell-input unbill-amt" value="0" onfocus="handleFocus(this)" onblur="handleBlur(this)" oninput="calculateAll()"> <button type="button" class="remove-btn" onclick="this.closest('tr').remove(); calculateAll();">✕</button></td>
+            <td colspan="2" style="border:none;"></td>
+        `;
+        anchor.parentNode.insertBefore(tr, anchor);
+        calculateAll();
+    }
+
     function handleFocus(input) {
         if (input.value === '0') {
             input.value = '';
@@ -564,68 +592,31 @@
     }
 
     function loadSavedOpeningBalance() {
-        let branch = document.getElementById('branchName').value;
-        let savedBalance = localStorage.getItem('closing_balance_' + branch);
+        let branchSelect = document.getElementById('branchName').value;
+        if (!branchSelect) return;
+        let savedBalance = localStorage.getItem('closing_balance_' + branchSelect);
         if (savedBalance !== null) {
-            document.getElementById('openingBalance').value = savedBalance;
+            document.getElementById('openingBalance').value = Math.round(parseFloat(savedBalance) || 0);
         } else {
             document.getElementById('openingBalance').value = 0;
         }
         calculateAll();
     }
 
-    function addExpenseRow() {
-        let container = document.getElementById('expensesList');
-        let div = document.createElement('div');
-        div.className = 'dynamic-row';
-        div.innerHTML = `
-            <input type="text" placeholder="Expense description" class="exp-name">
-            <input type="number" placeholder="Amount (₹)" class="amount-input exp-amt" value="0" onfocus="handleFocus(this)" onblur="handleBlur(this)" oninput="calculateAll()">
-            <button type="button" class="btn-icon" onclick="this.parentElement.remove(); calculateAll();">✕</button>
-        `;
-        container.appendChild(div);
-    }
-
-    function addVendorRow() {
-        let container = document.getElementById('vendorList');
-        let div = document.createElement('div');
-        div.className = 'dynamic-row';
-        div.innerHTML = `
-            <input type="text" placeholder="Vendor name / purpose" class="vendor-name">
-            <input type="number" placeholder="Amount (₹)" class="amount-input vendor-amt" value="0" onfocus="handleFocus(this)" onblur="handleBlur(this)" oninput="calculateAll()">
-            <button type="button" class="btn-icon" onclick="this.parentElement.remove(); calculateAll();">✕</button>
-        `;
-        container.appendChild(div);
-    }
-
-    function addUnbillRow() {
-        let container = document.getElementById('unbillList');
-        let div = document.createElement('div');
-        div.className = 'dynamic-row';
-        div.innerHTML = `
-            <input type="text" placeholder="Unbilled item description" class="unbill-name">
-            <input type="number" placeholder="Amount (₹)" class="amount-input unbill-amt" value="0" onfocus="handleFocus(this)" onblur="handleBlur(this)" oninput="calculateAll()">
-            <button type="button" class="btn-icon" onclick="this.parentElement.remove(); calculateAll();">✕</button>
-        `;
-        container.appendChild(div);
-    }
-
     let globalClosingBalance = 0;
 
     function calculateAll() {
-        let upi = parseFloat(document.getElementById('upi').value) || 0;
-        let card = parseFloat(document.getElementById('card').value) || 0;
-        let sodexo = parseFloat(document.getElementById('sodexo').value) || 0;
-        let cashAdded = parseFloat(document.getElementById('cashAdded').value) || 0;
-        let openingBalance = parseFloat(document.getElementById('openingBalance').value) || 0;
-        let softwareSaleInput = parseFloat(document.getElementById('softwareSale').value) || 0;
+        let card = Math.round(parseFloat(document.getElementById('card').value) || 0);
+        let upi = Math.round(parseFloat(document.getElementById('upi').value) || 0);
+        let sodexo = Math.round(parseFloat(document.getElementById('sodexo').value) || 0);
+        let openingBalance = Math.round(parseFloat(document.getElementById('openingBalance').value) || 0);
 
         let totalCashCount = 0;
         let cashExcluding500 = 0;
 
         document.querySelectorAll('.denom-count').forEach(input => {
             let denom = parseFloat(input.getAttribute('data-val'));
-            let count = parseFloat(input.value) || 0;
+            let count = Math.round(parseFloat(input.value) || 0);
             let subtotal = denom * count;
             document.getElementById('amt-' + denom).innerText = subtotal;
             totalCashCount += subtotal;
@@ -635,31 +626,41 @@
             }
         });
 
-        let netCashReceived = totalCashCount - cashAdded;
+        document.getElementById('totalDenomSum').innerText = totalCashCount;
+        
+        // Calculate Cash Added from breakdown inputs
+        let totalCashAdded = 0;
+        document.querySelectorAll('.added-count').forEach(input => {
+            let denom = parseFloat(input.getAttribute('data-val'));
+            let count = Math.round(parseFloat(input.value) || 0);
+            totalCashAdded += denom * count;
+        });
+
+        document.getElementById('displayCashAddedSum').innerText = totalCashAdded;
+        
+        let netCashReceived = totalCashCount - totalCashAdded;
         if(netCashReceived < 0) netCashReceived = 0;
+        document.getElementById('displayNetCashSum').innerText = netCashReceived;
 
-        globalClosingBalance = cashExcluding500;
-
-        document.getElementById('displayUPI').innerText = '₹' + upi;
-        document.getElementById('displayCard').innerText = '₹' + card;
-        document.getElementById('displayPluxee').innerText = '₹' + sodexo;
-        document.getElementById('displayCash').innerText = '₹' + netCashReceived;
-        document.getElementById('displayClosingBalance').innerText = '₹' + globalClosingBalance;
+        globalClosingBalance = Math.round(cashExcluding500);
+        document.getElementById('displayClosingBalance').innerText = globalClosingBalance;
 
         let expnTotal = 0;
         document.querySelectorAll('.exp-amt').forEach(input => {
-            expnTotal += parseFloat(input.value) || 0;
+            expnTotal += Math.round(parseFloat(input.value) || 0);
         });
 
         let vendorTotal = 0;
         document.querySelectorAll('.vendor-amt').forEach(input => {
-            vendorTotal += parseFloat(input.value) || 0;
+            vendorTotal += Math.round(parseFloat(input.value) || 0);
         });
 
         let unbillTotal = 0;
         document.querySelectorAll('.unbill-amt').forEach(input => {
-            unbillTotal += parseFloat(input.value) || 0;
+            unbillTotal += Math.round(parseFloat(input.value) || 0);
         });
+
+        let softwareSaleInput = Math.round(parseFloat(document.getElementById('softwareSale').value) || 0);
 
         let totalReceived = netCashReceived + upi + card + sodexo;
         let grandTotal = totalReceived - openingBalance;
@@ -667,15 +668,17 @@
         let totalSale = softwareSaleInput + unbillTotal;
         let tallyDiff = totalSum - totalSale;
 
-        document.getElementById('lblGrandTotal').innerText = '₹' + grandTotal;
-        document.getElementById('lblExpnTotal').innerText = '₹' + expnTotal;
-        document.getElementById('lblVendorTotal').innerText = '₹' + vendorTotal;
-        document.getElementById('lblTotal').innerText = '₹' + totalSum;
+        document.getElementById('lblGrandTotal').innerText = grandTotal;
+        document.getElementById('lblExpnTotal').innerText = expnTotal + ' +';
+        document.getElementById('lblVendorTotal').innerText = vendorTotal + ' +';
+        document.getElementById('lblTotal').innerText = totalSum;
 
-        document.getElementById('lblSoftwareSale').innerText = '₹' + softwareSaleInput;
-        document.getElementById('lblUnbillTotal').innerText = '₹' + unbillTotal;
-        document.getElementById('lblTotalSale').innerText = '₹' + totalSale;
-        document.getElementById('lblTally').innerText = '₹' + tallyDiff + (tallyDiff === 0 ? ' (Tallied)' : ' (Difference)');
+        document.getElementById('lblSoftwareSale').innerText = softwareSaleInput;
+        document.getElementById('lblUnbillTotal').innerText = unbillTotal + ' +';
+        document.getElementById('lblTotalSale').innerText = totalSale;
+        document.getElementById('lblTotalSaleBox').innerText = totalSale;
+        document.getElementById('lblTally').innerText = tallyDiff;
+        document.getElementById('grandTotalCell').innerText = grandTotal;
     }
 
     function clearForm() {
@@ -688,52 +691,28 @@
     function reviewReport() {
         let branch = document.getElementById('branchName').value;
         let openingBalanceInput = document.getElementById('openingBalance').value;
-        let softwareSaleInput = document.getElementById('softwareSale').value;
 
-        if (!branch || openingBalanceInput === "" || softwareSaleInput === "") {
-            alert("Please fill in all mandatory fields: Branch Name, Opening Balance, and Software Sale Amount.");
+        if (!branch) {
+            alert("Please select a Branch Name.");
+            document.getElementById('branchName').focus();
+            return;
+        }
+
+        if (openingBalanceInput === "") {
+            alert("Please enter Opening Balance.");
+            document.getElementById('openingBalance').focus();
             return;
         }
 
         let staffName = document.getElementById('staffName').value.trim();
-        let upi = parseFloat(document.getElementById('upi').value) || 0;
-        let card = parseFloat(document.getElementById('card').value) || 0;
-        let sodexo = parseFloat(document.getElementById('sodexo').value) || 0;
-        let cashAdded = parseFloat(document.getElementById('cashAdded').value) || 0;
-
-        let totalDenomCount = 0;
-        document.querySelectorAll('.denom-count').forEach(input => {
-            totalDenomCount += parseFloat(input.value) || 0;
-        });
-
-        let expHasData = false;
-        document.querySelectorAll('.exp-amt').forEach(input => {
-            if ((parseFloat(input.value) || 0) > 0) expHasData = true;
-        });
-
-        let vendorHasData = false;
-        document.querySelectorAll('.vendor-amt').forEach(input => {
-            if ((parseFloat(input.value) || 0) > 0) vendorHasData = true;
-        });
-
-        let unbillHasData = false;
-        document.querySelectorAll('.unbill-amt').forEach(input => {
-            if ((parseFloat(input.value) || 0) > 0) unbillHasData = true;
-        });
-
-        if (!staffName && upi === 0 && card === 0 && sodexo === 0 && cashAdded === 0 && totalDenomCount === 0 && parseFloat(softwareSaleInput) === 0 && !expHasData && !vendorHasData && !unbillHasData) {
-            alert("No data to submit.");
-            return;
-        }
-
         let date = document.getElementById('reportDate').value;
         let totalSaleText = document.getElementById('lblTotalSale').innerText;
         let tallyText = document.getElementById('lblTally').innerText;
 
         let detailsHtml = `
             <strong>Date:</strong> ${date} | <strong>Branch:</strong> ${branch} | <strong>Staff:</strong> ${staffName || 'N/A'}<br>
-            <strong>Opening Balance:</strong> ₹${openingBalanceInput} | <strong>Software Sale:</strong> ₹${softwareSaleInput}<br>
-            <strong>Total Sale:</strong> ${totalSaleText} | <strong>Tally Status:</strong> ${tallyText} | <strong>Closing Balance:</strong> ₹${globalClosingBalance}
+            <strong>Opening Balance:</strong> ₹${openingBalanceInput} | <strong>Total Sale:</strong> ₹${totalSaleText}<br>
+            <strong>Tally Status:</strong> ₹${tallyText} | <strong>Closing Balance:</strong> ₹${globalClosingBalance}
         `;
         document.getElementById('confDetailsText').innerHTML = detailsHtml;
 
@@ -765,7 +744,6 @@
             upi: document.getElementById('upi').value,
             card: document.getElementById('card').value,
             sodexo: document.getElementById('sodexo').value,
-            cashAdded: document.getElementById('cashAdded').value,
             closingBalance: globalClosingBalance,
             softwareSale: document.getElementById('softwareSale').value,
             remarks: document.getElementById('remarks').value
