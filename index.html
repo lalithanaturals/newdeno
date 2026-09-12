@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cash Denomination Register - Lalitha Naturals</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <style>
         :root {
@@ -115,8 +115,8 @@
             font-size: 14px;
         }
 
-        .meta-row input[type="date"] {
-            width: 160px;
+        .meta-row input[type="datetime-local"] {
+            width: 220px;
             padding: 6px;
             font-size: 13px;
         }
@@ -159,9 +159,13 @@
             border: none;
             background: transparent;
             text-align: center;
-            font-size: 13px;
+            font-size: 14px;
+            font-weight: 700;
             outline: none;
             font-family: 'Inter', sans-serif;
+            color: #000000 !important;
+            -webkit-text-fill-color: #000000 !important;
+            opacity: 1 !important;
         }
 
         /* Remove spin buttons */
@@ -294,8 +298,8 @@
     </div>
 
     <div class="meta-row">
-        <div>Date: <input type="date" id="reportDate" tabindex="2"></div>
-        <div>Staff Name: <input type="text" id="staffName" tabindex="3" placeholder="Staff member"></div>
+        <div>Date & Time: <input type="datetime-local" id="reportDate" tabindex="2"></div>
+        <div>Staff Name: <input type="text" id="staffName" tabindex="3" placeholder="Staff member (Required)"></div>
     </div>
 
     <!-- Master Grid Table (Landscape Optimized) -->
@@ -346,21 +350,17 @@
                 <td><strong>UPI</strong></td>
                 <td>-</td>
                 <td><input type="number" id="upi" tabindex="5" value="0" onfocus="handleFocus(this)" onblur="handleBlur(this)" oninput="calculateAll()"></td>
-                <td colspan="2" style="border-right:1px solid #000;"></td>
-                <td colspan="2" style="border-right:1px solid #000;"></td>
-                <td colspan="2"></td>
+                <td colspan="6" style="border-right:1px solid #000;"></td>
                 <td class="bg-red text-left">Expn.Total</td>
-                <td class="bg-red" id="lblExpnTotal">0 +</td>
+                <td class="bg-red" id="lblExpnTotal">0</td>
             </tr>
             <tr>
                 <td><strong>Pluxee (sodexo)</strong></td>
                 <td>-</td>
                 <td><input type="number" id="sodexo" tabindex="6" value="0" onfocus="handleFocus(this)" onblur="handleBlur(this)" oninput="calculateAll()"></td>
-                <td colspan="2" style="border-right:1px solid #000;"></td>
-                <td colspan="2" style="border-right:1px solid #000;"></td>
-                <td colspan="2"></td>
+                <td colspan="6" style="border-right:1px solid #000;"></td>
                 <td class="bg-green text-left">Vendor pay Total</td>
-                <td class="bg-green" id="lblVendorTotal">0 +</td>
+                <td class="bg-green" id="lblVendorTotal">0</td>
             </tr>
             <tr>
                 <td><strong>500</strong></td>
@@ -383,7 +383,7 @@
                 <td id="amt-100">0</td>
                 <td colspan="6" style="border:none;"></td>
                 <td class="text-left" style="font-weight:600;">Software sale</td>
-                <td><input type="number" id="softwareSale" tabindex="50" value="0" onfocus="handleFocus(this)" onblur="handleBlur(this)" oninput="calculateAll()" style="width:100%; border:none; background:transparent; text-align:center; font-size:13px; font-family:'Inter'; outline:none;"></td>
+                <td><input type="number" id="softwareSale" tabindex="50" value="0" onfocus="handleFocus(this)" onblur="handleBlur(this)" oninput="calculateAll()" style="width:100%; border:none; background:transparent; text-align:center; font-size:14px; font-weight:700; font-family:'Inter'; outline:none; color:#000000 !important; -webkit-text-fill-color: #000000 !important; opacity: 1 !important;"></td>
             </tr>
             <tr>
                 <td><strong>50</strong></td>
@@ -391,7 +391,7 @@
                 <td id="amt-50">0</td>
                 <td colspan="6" style="border:none;"></td>
                 <td class="bg-blue text-left">Unbill Total</td>
-                <td class="bg-blue" id="lblUnbillTotal">0 +</td>
+                <td class="bg-blue" id="lblUnbillTotal">0</td>
             </tr>
             <tr>
                 <td><strong>20</strong></td>
@@ -416,7 +416,7 @@
                 <td colspan="6" style="border:none;"></td>
                 <td colspan="2" rowspan="5" style="vertical-align: top; text-align: left; padding: 8px;">
                     <strong>Remarks:</strong><br>
-                    <textarea id="remarks" tabindex="60" rows="6" style="width:100%; border:none; resize:none; font-family:'Inter'; font-size:12px; background:transparent; outline:none;" placeholder="Notes..."></textarea>
+                    <textarea id="remarks" tabindex="60" rows="6" style="width:100%; border:none; resize:none; font-family:'Inter'; font-size:12px; font-weight:600; background:transparent; outline:none; color:#000000 !important; -webkit-text-fill-color: #000000 !important;" placeholder="Notes..."></textarea>
                 </td>
             </tr>
             <tr>
@@ -465,31 +465,30 @@
                 <td>-</td>
                 <td id="displayCashAddedSum">0</td>
                 <td colspan="6" style="border:none;"></td>
-                <td colspan="2" rowspan="2" class="bg-yellow" style="font-size: 18px; font-weight: 800; vertical-align: middle;">TOTAL SALE</td>
+                <td colspan="2" class="bg-yellow" style="font-size: 14px; font-weight: 800;">TOTAL SALE</td>
             </tr>
             <tr>
                 <td><strong>Total</strong></td>
                 <td>-</td>
                 <td id="displayNetCashSum">0</td>
-                <td class="bg-red">Expn.Total</td>
-                <td class="bg-green">Vendor pay Total</td>
-                <td class="bg-blue" colspan="2">Unbill Total</td>
-                <td colspan="2"></td>
+                <td colspan="2" style="border:none;"></td>
+                <td colspan="2" style="border:none;"></td>
+                <td colspan="2" style="border:none;"></td>
+                <td colspan="2" class="bg-yellow" style="font-size: 24px; font-weight: 800;" id="lblTotalSaleBox">0</td>
             </tr>
             <tr>
                 <td class="text-left"><strong>Today Opening balance (–)</strong></td>
                 <td>-</td>
                 <td><input type="number" id="openingBalance" tabindex="16" value="0" onfocus="handleFocus(this)" onblur="handleBlur(this)" oninput="calculateAll()"></td>
                 <td class="bg-gray text-left" style="font-weight:700;">Closing balance:</td>
-                <td class="bg-gray" id="displayClosingBalance" style="font-weight:700;">0</td>
-                <td colspan="4"></td>
-                <td colspan="2" style="background:#fef08a;" id="lblTotalSaleBox">0</td>
+                <td class="bg-gray" id="displayClosingBalance" style="font-weight:700;" colspan="2">0</td>
+                <td colspan="5" style="border:none;"></td>
             </tr>
             <tr>
                 <td class="bg-yellow text-left"><strong>Grand total</strong></td>
                 <td class="bg-yellow">-</td>
                 <td class="bg-yellow" id="grandTotalCell">0</td>
-                <td colspan="6"></td>
+                <td colspan="6" style="border:none;"></td>
                 <td colspan="2" style="text-align:right; font-weight:bold; padding-top:18px; border-top:2px solid #000;">
                     <div id="signStaffName" style="font-size:14px; font-weight:800; margin-bottom:4px;"></div>
                     Cashier signature
@@ -517,7 +516,14 @@
 
 <script>
     window.onload = function() {
-        document.getElementById('reportDate').valueAsDate = new Date();
+        const now = new Date();
+        const year = now.getFullYear();
+        const month = String(now.getMonth() + 1).padStart(2, '0');
+        const day = String(now.getDate()).padStart(2, '0');
+        const hours = String(now.getHours()).padStart(2, '0');
+        const minutes = String(now.getMinutes()).padStart(2, '0');
+        document.getElementById('reportDate').value = `${year}-${month}-${day}T${hours}:${minutes}`;
+
         loadSavedOpeningBalance();
         setupStaffSignatureSync();
     };
@@ -628,7 +634,6 @@
 
         document.getElementById('totalDenomSum').innerText = totalCashCount;
         
-        // Calculate Cash Added from breakdown inputs
         let totalCashAdded = 0;
         document.querySelectorAll('.added-count').forEach(input => {
             let denom = parseFloat(input.getAttribute('data-val'));
@@ -669,12 +674,11 @@
         let tallyDiff = totalSum - totalSale;
 
         document.getElementById('lblGrandTotal').innerText = grandTotal;
-        document.getElementById('lblExpnTotal').innerText = expnTotal + ' +';
-        document.getElementById('lblVendorTotal').innerText = vendorTotal + ' +';
+        document.getElementById('lblExpnTotal').innerText = expnTotal;
+        document.getElementById('lblVendorTotal').innerText = vendorTotal;
         document.getElementById('lblTotal').innerText = totalSum;
 
-        document.getElementById('lblSoftwareSale').innerText = softwareSaleInput;
-        document.getElementById('lblUnbillTotal').innerText = unbillTotal + ' +';
+        document.getElementById('lblUnbillTotal').innerText = unbillTotal;
         document.getElementById('lblTotalSale').innerText = totalSale;
         document.getElementById('lblTotalSaleBox').innerText = totalSale;
         document.getElementById('lblTally').innerText = tallyDiff;
@@ -691,10 +695,17 @@
     function reviewReport() {
         let branch = document.getElementById('branchName').value;
         let openingBalanceInput = document.getElementById('openingBalance').value;
+        let staffNameInput = document.getElementById('staffName').value.trim();
 
         if (!branch) {
             alert("Please select a Branch Name.");
             document.getElementById('branchName').focus();
+            return;
+        }
+
+        if (!staffNameInput) {
+            alert("Staff Name is mandatory. Please enter the staff name.");
+            document.getElementById('staffName').focus();
             return;
         }
 
@@ -704,13 +715,12 @@
             return;
         }
 
-        let staffName = document.getElementById('staffName').value.trim();
-        let date = document.getElementById('reportDate').value;
+        let dateVal = document.getElementById('reportDate').value;
         let totalSaleText = document.getElementById('lblTotalSale').innerText;
         let tallyText = document.getElementById('lblTally').innerText;
 
         let detailsHtml = `
-            <strong>Date:</strong> ${date} | <strong>Branch:</strong> ${branch} | <strong>Staff:</strong> ${staffName || 'N/A'}<br>
+            <strong>Date & Time:</strong> ${dateVal} | <strong>Branch:</strong> ${branch} | <strong>Staff:</strong> ${staffNameInput}<br>
             <strong>Opening Balance:</strong> ₹${openingBalanceInput} | <strong>Total Sale:</strong> ₹${totalSaleText}<br>
             <strong>Tally Status:</strong> ₹${tallyText} | <strong>Closing Balance:</strong> ₹${globalClosingBalance}
         `;
@@ -734,12 +744,23 @@
 
     function finalConfirmAndSubmit() {
         let branch = document.getElementById('branchName').value;
+        let staffNameInput = document.getElementById('staffName').value.trim();
+
+        if (!staffNameInput) {
+            alert("Staff Name is mandatory.");
+            document.getElementById('staffName').focus();
+            return;
+        }
+
         localStorage.setItem('closing_balance_' + branch, globalClosingBalance);
         
+        let rawDateVal = document.getElementById('reportDate').value;
+        let fileTimestamp = rawDateVal ? rawDateVal.replace(/[:T]/g, '-') : new Date().toISOString().slice(0,19).replace(/[:T]/g, '-');
+
         let formData = {
-            date: document.getElementById('reportDate').value,
+            date: rawDateVal,
             branchName: branch,
-            staffName: document.getElementById('staffName').value.trim(),
+            staffName: staffNameInput,
             openingBalance: document.getElementById('openingBalance').value,
             upi: document.getElementById('upi').value,
             card: document.getElementById('card').value,
@@ -757,10 +778,10 @@
             },
             body: JSON.stringify(formData)
         }).then(() => {
-            html2canvas(document.querySelector("#printableArea")).then(canvas => {
+            html2canvas(document.querySelector("#printableArea"), { scale: 2 }).then(canvas => {
                 let link = document.createElement('a');
-                link.download = `Daily_Report_${branch}_${formData.date}.jpg`;
-                link.href = canvas.toDataURL('image/jpeg', 0.9);
+                link.download = `Daily_Report_${branch}_${fileTimestamp}.jpg`;
+                link.href = canvas.toDataURL('image/jpeg', 0.95);
                 link.click();
             });
 
