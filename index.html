@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Daily Account & Denomination Tally</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- html2canvas library for generating JPEG downloads -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <style>
         :root {
             --primary: #065f46;
@@ -64,7 +66,6 @@
             gap: 8px;
         }
 
-        /* Colored Section Wrapper Cards */
         .section-card {
             border-radius: 12px;
             padding: 20px;
@@ -72,28 +73,16 @@
             border: 1px solid transparent;
         }
 
-        .section-expenses {
-            background-color: #fff1f2; 
-            border-color: #fecdd3;
-        }
+        .section-expenses { background-color: #fff1f2; border-color: #fecdd3; }
         .section-expenses .section-header { color: #9f1239; border-color: #f43f5e; }
 
-        .section-vendor {
-            background-color: #f0fdf4; 
-            border-color: #bbf7d0;
-        }
+        .section-vendor { background-color: #f0fdf4; border-color: #bbf7d0; }
         .section-vendor .section-header { color: #166534; border-color: #22c55e; }
 
-        .section-unbill {
-            background-color: #eff6ff; 
-            border-color: #bfdbfe;
-        }
+        .section-unbill { background-color: #eff6ff; border-color: #bfdbfe; }
         .section-unbill .section-header { color: #1e40af; border-color: #3b82f6; }
 
-        .section-software {
-            background-color: #faf5ff; 
-            border-color: #e9d5ff;
-        }
+        .section-software { background-color: #faf5ff; border-color: #e9d5ff; }
         .section-software .section-header { color: #6b21a8; border-color: #a855f7; }
 
         .grid-2 {
@@ -139,7 +128,6 @@
             box-shadow: 0 0 0 3px rgba(6, 95, 70, 0.15);
         }
 
-        /* Denominations Table */
         .table-wrapper {
             border: 1px solid var(--border-color);
             border-radius: 10px;
@@ -298,6 +286,12 @@
         .s-totalsale { background-color: #fef08a; color: #713f12; }
         .s-tally { background-color: #e2e8f0; color: #0f172a; }
 
+        .btn-container {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
         .submit-btn {
             background: #065f46;
             color: white;
@@ -307,19 +301,35 @@
             font-weight: 600;
             cursor: pointer;
             border-radius: 8px;
-            width: 100%;
-            margin-top: 30px;
+            flex: 1;
             box-shadow: 0 4px 12px rgba(6, 95, 70, 0.2);
         }
 
         .submit-btn:hover {
             background: #047857;
         }
+
+        .clear-btn {
+            background: #e11d48;
+            color: white;
+            border: none;
+            padding: 14px 20px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            border-radius: 8px;
+            flex: 1;
+            box-shadow: 0 4px 12px rgba(225, 29, 72, 0.2);
+        }
+
+        .clear-btn:hover {
+            background: #be123c;
+        }
     </style>
 </head>
 <body>
 
-<div class="app-container">
+<div class="app-container" id="printableArea">
     <div class="header">
         <h1>Daily End Sale & Tally Report</h1>
         <p>White Background & Dark Green Theme Account Reconciliation</p>
@@ -404,7 +414,7 @@
 
     <!-- Closing Balance Display Box -->
     <div class="closing-balance-box">
-        <span>Closing Balance (Denominations excluding ₹500 - Cash Added):</span>
+        <span>Closing Balance (Total of all cash denominations excluding ₹500):</span>
         <span id="displayClosingBalance">₹0</span>
     </div>
 
@@ -462,8 +472,11 @@
         <label>Remarks / Notes</label>
         <textarea id="remarks" placeholder="Optional notes for the day..."></textarea>
     </div>
+</div>
 
+<div class="btn-container">
     <button class="submit-btn" onclick="submitReport()">Save & Process Report</button>
+    <button class="clear-btn" onclick="clearForm()">Clear & Reset Form</button>
 </div>
 
 <script>
@@ -550,8 +563,7 @@
         let netCashReceived = totalCashCount - cashAdded;
         if(netCashReceived < 0) netCashReceived = 0;
 
-        globalClosingBalance = cashExcluding500 - cashAdded;
-        if(globalClosingBalance < 0) globalClosingBalance = 0;
+        globalClosingBalance = cashExcluding500;
 
         document.getElementById('displayUPI').innerText = '₹' + upi;
         document.getElementById('displayCard').innerText = '₹' + card;
@@ -591,25 +603,70 @@
         document.getElementById('lblTally').innerText = '₹' + tallyDiff + (tallyDiff === 0 ? ' (Tallied)' : ' (Difference)');
     }
 
+    function clearForm() {
+        if (confirm("Are you sure you want to clear all data and reset the form?")) {
+            localStorage.clear();
+            location.reload();
+        }
+    }
+
     function submitReport() {
+        let staffName = document.getElementById('staffName').value.trim();
+        let upi = parseFloat(document.getElementById('upi').value) || 0;
+        let card = parseFloat(document.getElementById('card').value) || 0;
+        let sodexo = parseFloat(document.getElementById('sodexo').value) || 0;
+        let cashAdded = parseFloat(document.getElementById('cashAdded').value) || 0;
+        let openingBalance = parseFloat(document.getElementById('openingBalance').value) || 0;
+        let softwareSale = parseFloat(document.getElementById('softwareSale').value) || 0;
+
+        let totalDenomCount = 0;
+        document.querySelectorAll('.denom-count').forEach(input => {
+            totalDenomCount += parseFloat(input.value) || 0;
+        });
+
+        let expHasData = false;
+        document.querySelectorAll('.exp-amt').forEach(input => {
+            if ((parseFloat(input.value) || 0) > 0) expHasData = true;
+        });
+
+        let vendorHasData = false;
+        document.querySelectorAll('.vendor-amt').forEach(input => {
+            if ((parseFloat(input.value) || 0) > 0) vendorHasData = true;
+        });
+
+        let unbillHasData = false;
+        document.querySelectorAll('.unbill-amt').forEach(input => {
+            if ((parseFloat(input.value) || 0) > 0) unbillHasData = true;
+        });
+
+        if (!staffName && upi === 0 && card === 0 && sodexo === 0 && cashAdded === 0 && totalDenomCount === 0 && softwareSale === 0 && !expHasData && !vendorHasData && !unbillHasData) {
+            alert("No data to submit.");
+            return;
+        }
+
+        let isConfirmed = confirm("Do you want to confirm this form data? Click OK to submit and generate JPEG download, or Cancel to edit your form.");
+        if (!isConfirmed) {
+            return; 
+        }
+
         let branch = document.getElementById('branchName').value;
         localStorage.setItem('closing_balance_' + branch, globalClosingBalance);
         
         let formData = {
             date: document.getElementById('reportDate').value,
             branchName: branch,
-            staffName: document.getElementById('staffName').value,
-            openingBalance: document.getElementById('openingBalance').value,
-            upi: document.getElementById('upi').value,
-            card: document.getElementById('card').value,
-            sodexo: document.getElementById('sodexo').value,
-            cashAdded: document.getElementById('cashAdded').value,
+            staffName: staffName,
+            openingBalance: openingBalance,
+            upi: upi,
+            card: card,
+            sodexo: sodexo,
+            cashAdded: cashAdded,
             closingBalance: globalClosingBalance,
-            softwareSale: document.getElementById('softwareSale').value,
+            softwareSale: softwareSale,
             remarks: document.getElementById('remarks').value
         };
 
-        // Send data to Google Sheets via your deployed Web App URL
+        // Send to Google Sheets backend
         fetch('https://script.google.com/macros/s/AKfycbxRC-XR0-jvED9cqJQwEern-Dg0m-qm0U5kzRveQotGCscxaKbLKMnRTBHJSKKE9Qh9/exec', {
             method: 'POST',
             mode: 'no-cors',
@@ -618,7 +675,21 @@
             },
             body: JSON.stringify(formData)
         }).then(() => {
-            alert("Report verified and saved successfully! Closing Balance (₹" + globalClosingBalance + ") carried forward as next Opening Balance.");
+            // Trigger automatic JPEG download of the report card
+            html2canvas(document.querySelector("#printableArea")).then(canvas => {
+                let link = document.createElement('a');
+                link.download = `Daily_Report_${branch}_${formData.date}.jpg`;
+                link.href = canvas.toDataURL('image/jpeg', 0.9);
+                link.click();
+            });
+
+            alert("Report successfully saved to Google Sheets and JPEG downloaded!");
+            
+            // Clear and reset form data after confirmation
+            setTimeout(() => {
+                location.reload();
+            }, 1000);
+
         }).catch(error => {
             console.error('Error:', error);
             alert("Saved locally, but check network connection for Google Sheets sync.");
