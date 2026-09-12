@@ -11,7 +11,6 @@
             --primary: #065f46;
             --primary-hover: #047857;
             --bg-color: #ffffff;
-            --card-bg: #ffffff;
             --text-main: #0f172a;
             --text-muted: #475569;
             --border-color: #cbd5e1;
@@ -33,14 +32,14 @@
             padding: 20px;
             border: 1px solid #e2e8f0;
             
-            /* --- WATERMARK SETTINGS --- */
-            /* The linear-gradient acts as a 93% white overlay to fade the image */
-            background-color: var(--card-bg);
-            background-image: linear-gradient(rgba(255, 255, 255, 0.93), rgba(255, 255, 255, 0.93)), url('rupee.png');
+            /* --- GUARANTEED INLINE WATERMARK --- */
+            background-color: #ffffff;
+            background-image: 
+                linear-gradient(rgba(255, 255, 255, 0.82), rgba(255, 255, 255, 0.82)), 
+                url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 300' width='300' height='300'%3E%3Ctext x='50%25' y='55%25' font-size='220' font-family='Arial, sans-serif' font-weight='bold' fill='%23065f46' fill-opacity='0.08' text-anchor='middle' dominant-baseline='middle'%3E₹%3C/text%3E%3C/svg%3E");
             background-repeat: no-repeat;
             background-position: center center;
-            background-size: 50%; /* Adjust this to make the watermark larger or smaller */
-            /* --------------------------- */
+            background-size: 55%;
         }
 
         .header {
@@ -72,20 +71,19 @@
             padding: 12px;
             margin-top: 12px;
             border: 1px solid transparent;
-            /* Make section backgrounds slightly transparent so watermark shows through */
-            background-color: rgba(255, 255, 255, 0.6) !important; 
+            background-color: rgba(255, 255, 255, 0.5) !important; 
         }
 
-        .section-expenses { border-color: #fecdd3; }
+        .section-expenses { border-color: #fecdd3; background-color: rgba(255, 241, 242, 0.75) !important; }
         .section-expenses .section-header { color: #9f1239; border-color: #f43f5e; }
 
-        .section-vendor { border-color: #bbf7d0; }
+        .section-vendor { border-color: #bbf7d0; background-color: rgba(240, 253, 244, 0.75) !important; }
         .section-vendor .section-header { color: #166534; border-color: #22c55e; }
 
-        .section-unbill { border-color: #bfdbfe; }
+        .section-unbill { border-color: #bfdbfe; background-color: rgba(239, 246, 255, 0.75) !important; }
         .section-unbill .section-header { color: #1e40af; border-color: #3b82f6; }
 
-        .section-software { border-color: #e9d5ff; }
+        .section-software { border-color: #e9d5ff; background-color: rgba(250, 245, 255, 0.75) !important; }
         .section-software .section-header { color: #6b21a8; border-color: #a855f7; }
 
         .grid-2 {
@@ -126,7 +124,7 @@
             font-size: 13px;
             font-family: 'Inter', sans-serif;
             box-sizing: border-box;
-            background-color: rgba(255, 255, 255, 0.8);
+            background-color: rgba(255, 255, 255, 0.95);
             color: #0f172a;
             transition: all 0.2s ease;
         }
@@ -143,7 +141,7 @@
             border-radius: 8px;
             overflow: hidden;
             margin-top: 6px;
-            background-color: rgba(255, 255, 255, 0.7);
+            background-color: rgba(255, 255, 255, 0.85);
         }
 
         table {
@@ -179,7 +177,7 @@
         }
 
         .mode-banner {
-            background: rgba(248, 250, 252, 0.8);
+            background: rgba(248, 250, 252, 0.9);
             border: 1px solid #cbd5e1;
             border-radius: 6px;
             padding: 8px 12px;
@@ -192,7 +190,7 @@
         }
 
         .closing-balance-box {
-            background: rgba(240, 253, 244, 0.9);
+            background: rgba(240, 253, 244, 0.95);
             border: 1px solid #059669;
             border-radius: 6px;
             padding: 8px 12px;
@@ -240,7 +238,7 @@
         }
 
         .btn-secondary {
-            background: rgba(255, 255, 255, 0.8);
+            background: rgba(255, 255, 255, 0.9);
             color: #334155;
             border: 1px dashed #cbd5e1;
             padding: 6px 12px;
@@ -264,7 +262,7 @@
             border-radius: 8px;
             overflow: hidden;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
-            background-color: rgba(255, 255, 255, 0.8);
+            background-color: rgba(255, 255, 255, 0.9);
         }
 
         .summary-title-bar {
@@ -289,14 +287,14 @@
             border-bottom: none;
         }
 
-        .s-grand { background-color: rgba(254, 240, 138, 0.7); color: #713f12; }
-        .s-expn { background-color: rgba(254, 226, 226, 0.7); color: #991b1b; }
-        .s-vendor { background-color: rgba(220, 252, 231, 0.7); color: #166534; }
-        .s-total { background-color: rgba(226, 232, 240, 0.7); color: #334155; }
+        .s-grand { background-color: rgba(254, 240, 138, 0.85); color: #713f12; }
+        .s-expn { background-color: rgba(254, 226, 226, 0.85); color: #991b1b; }
+        .s-vendor { background-color: rgba(220, 252, 231, 0.85); color: #166534; }
+        .s-total { background-color: rgba(226, 232, 240, 0.85); color: #334155; }
         .s-software { background-color: transparent; color: #0f172a; }
-        .s-unbill { background-color: rgba(219, 234, 254, 0.7); color: #1e40af; }
-        .s-totalsale { background-color: rgba(254, 240, 138, 0.7); color: #713f12; }
-        .s-tally { background-color: rgba(226, 232, 240, 0.7); color: #0f172a; }
+        .s-unbill { background-color: rgba(219, 234, 254, 0.85); color: #1e40af; }
+        .s-totalsale { background-color: rgba(254, 240, 138, 0.85); color: #713f12; }
+        .s-tally { background-color: rgba(226, 232, 240, 0.85); color: #0f172a; }
 
         .btn-container {
             display: flex;
@@ -339,7 +337,7 @@
 
         #confirmationPanel {
             display: none;
-            background: rgba(248, 250, 252, 0.95);
+            background: rgba(248, 250, 252, 0.98);
             border: 2px solid #065f46;
             border-radius: 8px;
             padding: 15px;
@@ -406,7 +404,7 @@
         </div>
         <div class="form-group">
             <label class="mandatory">Opening Balance (₹)</label>
-            <input type="number" id="openingBalance" value="0" oninput="calculateAll()">
+            <input type="number" id="openingBalance" value="0" onfocus="handleFocus(this)" onblur="handleBlur(this)" oninput="calculateAll()">
         </div>
     </div>
 
@@ -415,19 +413,19 @@
     <div class="grid-4">
         <div class="form-group">
             <label>UPI Transactions</label>
-            <input type="number" id="upi" value="0" oninput="calculateAll()">
+            <input type="number" id="upi" value="0" onfocus="handleFocus(this)" onblur="handleBlur(this)" oninput="calculateAll()">
         </div>
         <div class="form-group">
             <label>Card Transactions</label>
-            <input type="number" id="card" value="0" oninput="calculateAll()">
+            <input type="number" id="card" value="0" onfocus="handleFocus(this)" onblur="handleBlur(this)" oninput="calculateAll()">
         </div>
         <div class="form-group">
             <label>Pluxee / Sodexo</label>
-            <input type="number" id="sodexo" value="0" oninput="calculateAll()">
+            <input type="number" id="sodexo" value="0" onfocus="handleFocus(this)" onblur="handleBlur(this)" oninput="calculateAll()">
         </div>
         <div class="form-group">
             <label>Cash Added / Change</label>
-            <input type="number" id="cashAdded" value="0" oninput="calculateAll()">
+            <input type="number" id="cashAdded" value="0" onfocus="handleFocus(this)" onblur="handleBlur(this)" oninput="calculateAll()">
         </div>
     </div>
 
@@ -443,15 +441,15 @@
                 </tr>
             </thead>
             <tbody>
-                <tr><td>₹500</td><td><input type="number" class="denom-count" data-val="500" value="0" oninput="calculateAll()"></td><td id="amt-500">0</td></tr>
-                <tr><td>₹200</td><td><input type="number" class="denom-count" data-val="200" value="0" oninput="calculateAll()"></td><td id="amt-200">0</td></tr>
-                <tr><td>₹100</td><td><input type="number" class="denom-count" data-val="100" value="0" oninput="calculateAll()"></td><td id="amt-100">0</td></tr>
-                <tr><td>₹50</td><td><input type="number" class="denom-count" data-val="50" value="0" oninput="calculateAll()"></td><td id="amt-50">0</td></tr>
-                <tr><td>₹20</td><td><input type="number" class="denom-count" data-val="20" value="0" oninput="calculateAll()"></td><td id="amt-20">0</td></tr>
-                <tr><td>₹10</td><td><input type="number" class="denom-count" data-val="10" value="0" oninput="calculateAll()"></td><td id="amt-10">0</td></tr>
-                <tr><td>₹5</td><td><input type="number" class="denom-count" data-val="5" value="0" oninput="calculateAll()"></td><td id="amt-5">0</td></tr>
-                <tr><td>₹2</td><td><input type="number" class="denom-count" data-val="2" value="0" oninput="calculateAll()"></td><td id="amt-2">0</td></tr>
-                <tr><td>₹1</td><td><input type="number" class="denom-count" data-val="1" value="0" oninput="calculateAll()"></td><td id="amt-1">0</td></tr>
+                <tr><td>₹500</td><td><input type="number" class="denom-count" data-val="500" value="0" onfocus="handleFocus(this)" onblur="handleBlur(this)" oninput="calculateAll()"></td><td id="amt-500">0</td></tr>
+                <tr><td>₹200</td><td><input type="number" class="denom-count" data-val="200" value="0" onfocus="handleFocus(this)" onblur="handleBlur(this)" oninput="calculateAll()"></td><td id="amt-200">0</td></tr>
+                <tr><td>₹100</td><td><input type="number" class="denom-count" data-val="100" value="0" onfocus="handleFocus(this)" onblur="handleBlur(this)" oninput="calculateAll()"></td><td id="amt-100">0</td></tr>
+                <tr><td>₹50</td><td><input type="number" class="denom-count" data-val="50" value="0" onfocus="handleFocus(this)" onblur="handleBlur(this)" oninput="calculateAll()"></td><td id="amt-50">0</td></tr>
+                <tr><td>₹20</td><td><input type="number" class="denom-count" data-val="20" value="0" onfocus="handleFocus(this)" onblur="handleBlur(this)" oninput="calculateAll()"></td><td id="amt-20">0</td></tr>
+                <tr><td>₹10</td><td><input type="number" class="denom-count" data-val="10" value="0" onfocus="handleFocus(this)" onblur="handleBlur(this)" oninput="calculateAll()"></td><td id="amt-10">0</td></tr>
+                <tr><td>₹5</td><td><input type="number" class="denom-count" data-val="5" value="0" onfocus="handleFocus(this)" onblur="handleBlur(this)" oninput="calculateAll()"></td><td id="amt-5">0</td></tr>
+                <tr><td>₹2</td><td><input type="number" class="denom-count" data-val="2" value="0" onfocus="handleFocus(this)" onblur="handleBlur(this)" oninput="calculateAll()"></td><td id="amt-2">0</td></tr>
+                <tr><td>₹1</td><td><input type="number" class="denom-count" data-val="1" value="0" onfocus="handleFocus(this)" onblur="handleBlur(this)" oninput="calculateAll()"></td><td id="amt-1">0</td></tr>
             </tbody>
         </table>
     </div>
@@ -496,7 +494,7 @@
         <div class="section-header">Software Sale</div>
         <div class="form-group" style="margin-top: 6px; margin-bottom: 0;">
             <label class="mandatory">Software Sale Amount (₹)</label>
-            <input type="number" id="softwareSale" value="0" oninput="calculateAll()">
+            <input type="number" id="softwareSale" value="0" onfocus="handleFocus(this)" onblur="handleBlur(this)" oninput="calculateAll()">
         </div>
     </div>
 
@@ -551,6 +549,20 @@
         loadSavedOpeningBalance();
     };
 
+    // Helper functions to clear '0' on click/focus and restore '0' if left blank
+    function handleFocus(input) {
+        if (input.value === '0') {
+            input.value = '';
+        }
+    }
+
+    function handleBlur(input) {
+        if (input.value === '') {
+            input.value = '0';
+            calculateAll();
+        }
+    }
+
     function loadSavedOpeningBalance() {
         let branch = document.getElementById('branchName').value;
         let savedBalance = localStorage.getItem('closing_balance_' + branch);
@@ -568,7 +580,7 @@
         div.className = 'dynamic-row';
         div.innerHTML = `
             <input type="text" placeholder="Expense description" class="exp-name">
-            <input type="number" placeholder="Amount (₹)" class="amount-input exp-amt" value="0" oninput="calculateAll()">
+            <input type="number" placeholder="Amount (₹)" class="amount-input exp-amt" value="0" onfocus="handleFocus(this)" onblur="handleBlur(this)" oninput="calculateAll()">
             <button type="button" class="btn-icon" onclick="this.parentElement.remove(); calculateAll();">✕</button>
         `;
         container.appendChild(div);
@@ -580,7 +592,7 @@
         div.className = 'dynamic-row';
         div.innerHTML = `
             <input type="text" placeholder="Vendor name / purpose" class="vendor-name">
-            <input type="number" placeholder="Amount (₹)" class="amount-input vendor-amt" value="0" oninput="calculateAll()">
+            <input type="number" placeholder="Amount (₹)" class="amount-input vendor-amt" value="0" onfocus="handleFocus(this)" onblur="handleBlur(this)" oninput="calculateAll()">
             <button type="button" class="btn-icon" onclick="this.parentElement.remove(); calculateAll();">✕</button>
         `;
         container.appendChild(div);
@@ -592,7 +604,7 @@
         div.className = 'dynamic-row';
         div.innerHTML = `
             <input type="text" placeholder="Unbilled item description" class="unbill-name">
-            <input type="number" placeholder="Amount (₹)" class="amount-input unbill-amt" value="0" oninput="calculateAll()">
+            <input type="number" placeholder="Amount (₹)" class="amount-input unbill-amt" value="0" onfocus="handleFocus(this)" onblur="handleBlur(this)" oninput="calculateAll()">
             <button type="button" class="btn-icon" onclick="this.parentElement.remove(); calculateAll();">✕</button>
         `;
         container.appendChild(div);
